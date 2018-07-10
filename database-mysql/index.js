@@ -7,14 +7,14 @@ try {
 
 catch(e) {
   config = {
-    HOST    : process.env.MYSQL_HOST,
-    USER    : process.env.MYSQL_USER,
-    PASSWD  : process.env.MYSQL_PASSWD,
-    DATABASE : process.env.MYSQL_DB
+    HOST    : process.env.CLEARDB_DATABASE_HOST,
+    USER    : process.env.CLEARDB_DATABASE_USER,
+    PASSWD  : process.env.CLEARDB_DATABASE_PASSWD,
+    DATABASE : process.env.CLEARDB_DATABASE
   }
 }
 
-
+// to connect  mysql -u <username> -p -h us-cdbr-iron-east-04.cleardb.net
 
 
 const sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWD, {
