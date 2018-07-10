@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
 try {
-  const config = require('./config.js')
+
+  config = require('./config.js')
 }
+
 
 catch(e) {
   config = {
@@ -13,8 +15,10 @@ catch(e) {
 }
 
 
+
+
 const sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWD, {
-  host: config.HOST,
+  host: 'localhost',
   dialect: 'mysql'
 });
 
