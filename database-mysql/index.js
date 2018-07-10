@@ -1,20 +1,24 @@
-var mysql = require('mysql');
+const Sequelize = require('sequelize');
+const config = require('./config.js')
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'FILL_ME_IN',
-  database : 'test'
+const sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWD, {
+  host: 'localhost',
+  dialect: 'mysql'
 });
 
-var selectAll = function(callback) {
-  connection.query('SELECT * FROM items', function(err, results, fields) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, results);
-    }
-  });
-};
+const User = sequelize.define('user', {
+  username: Sequelize.STRING,
+  birthday: Sequelize.DATE
+});
 
-module.exports.selectAll = selectAll;
+sequelize.sync()
+  .then(() => User.create({
+    username: 'janedoe',
+    birthday: new Date(1980, 6, 20)
+  }))
+  .then(jane => {
+    console.log(jane.toJSON());
+  });
+
+
+module.exports.User = User;

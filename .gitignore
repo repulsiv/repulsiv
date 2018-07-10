@@ -1,5 +1,6 @@
 ### node etc ###
 
+config.js
 # Logs
 logs
 *.log
