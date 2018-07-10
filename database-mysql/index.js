@@ -1,8 +1,20 @@
 const Sequelize = require('sequelize');
-const config = require('./config.js')
+try {
+  const config = require('./config.js')
+}
+
+catch(e) {
+  config = {
+    HOST    : process.env.MYSQL_HOST,
+    USER    : process.env.MYSQL_USER,
+    PASSWD  : process.env.MYSQL_PASSWD,
+    DATABASE : process.env.MYSQL_DB
+  }
+}
+
 
 const sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWD, {
-  host: 'localhost',
+  host: config.HOST,
   dialect: 'mysql'
 });
 
