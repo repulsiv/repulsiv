@@ -6,7 +6,9 @@
   "scripts": {
     "postinstall": "webpack",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "start": "nodemon server/index.js",
+
   },
   "author": "Beth Johnson",
   "license": "ISC",
