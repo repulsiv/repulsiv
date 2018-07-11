@@ -19,14 +19,22 @@ catch(e) {
 
 try {
   var sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWD, {
-    host: 'localhost',
-    dialect: 'mysql',
+  host: 'localhost',
+  dialect: 'mysql',
   });
 }
 
 
+
+
 catch(e) {
+  console.log('inside catch')
   console.log(e)
+  var sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, {
+    host: 'localhost',
+    dialect: 'mysql',
+  })
+
 }
 
 const User = sequelize.define('user', {
