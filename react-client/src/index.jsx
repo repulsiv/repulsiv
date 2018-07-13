@@ -1,35 +1,73 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import List from './components/List.jsx';
+import ProductList from './components/ProductList.jsx';
+var sampleData = require('./mockData.js')
+import Toggle from 'react-toggle';
+import Login from './components/Login.jsx'
+import Logout from './components/Logout.jsx'
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleSearch = this.handleSearch.bind(this)
+
+
     this.state = {
-      items: []
+      items: [],
+      isLoggedIn: false,
+      mockData: [],
+
     }
   }
 
-  componentDidMount() {
-    $.ajax({
-      url: '/users',
-      success: (data) => {
-        this.setState({
-          items: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
+  // handleLoginClick() {
+  //   this.setState({isLoggedIn: true});
+  // }
+
+  handleLogoutClick() {
+    this.setState({isLoggedIn: false});
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault()
+
+  }
+
+  handleSearch(e) {
+    // perform ajax call to get get the data
+
+    if (e.key ===  'Enter') {
+      this.setState({
+        mockData: sampleData.mockData
+      })
+    }
   }
 
   render () {
-    return (<div>
-      <h1>Item List</h1>
-      <List items={this.state.items}/>
-    </div>)
+    const isLoggedIn = this.state.isLoggedIn;
+
+    let button;
+    if (isLoggedIn) {
+      button = <Logout onClick={this.handleLogoutClick} />;
+    } else {
+      button = <Login isLoggedIn={this.state.isLoggedIn}/>
+    }
+
+    let productList;
+
+    return (
+      <div>
+        <form onSubmit={this.handleFormSubmit}>
+          <h1> Yecchy </h1>
+          {button}
+          <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} />
+          <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} />
+      </form>
+
+      </div>)
   }
 }
 
