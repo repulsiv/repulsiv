@@ -10,18 +10,19 @@ class Logout extends React.Component {
 
 
   signOut() {
+    var self = this;
      var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(() => {
-        this.props.userLogin(false);
+        $.ajax({
+            url: "/logout",
+            context: self
+          }).done( (response) => {
+            self.props.userLogin(false);
+          }).fail ( (err) => {
+            console.log(err);
+        })
       });
 
-    $.ajax({
-        url: "/logout",
-      }).done( (response) => {
-
-      }).fail ( (err) => {
-        console.log(err);
-    })
   }
 
   render() {

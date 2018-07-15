@@ -11,6 +11,7 @@ catch(e) {
     USER    : process.env.CLEARDB_DATABASE_USER,
     PASSWD  : process.env.CLEARDB_DATABASE_PASSWD,
     DATABASE : process.env.CLEARDB_DATABASE,
+    CLIENT_ID: process.env.CLIENT_ID,
     PORT: 3306
   }
 }
@@ -30,3 +31,54 @@ catch(e) {
   console.log(e)
 }
 
+
+// JUST FOR TEST ---- for authentication part
+
+// var mysql = require('mysql');
+
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : <username>,
+//   password : <passoword>,
+//   database : 'greenfield'
+// });
+
+// var selectAll = function(callback) {
+//   connection.query('SELECT * FROM users', function(err, results, fields) {
+//     if(err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, results);
+//     }
+//   });
+// };
+
+
+// var findUserId = function(userId, callback) {
+
+//   connection.query('SELECT * FROM users WHERE userId = ?', userId, function(err, results, fields) {
+//     if (err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, results)
+//     }
+//   })
+// }
+
+// var insertUserId = function(userInfo, callback) {
+//   // userInfo = {sub: 1221233223, email:'abc@yahoo.com', username:'userABC'}
+
+//   connection.query('INSERT INTO users SET ?', userInfo, function(err, results, fields) {
+//     if (err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, results)
+//     }
+//   })
+// }
+
+// module.exports = {
+//   selectAll: selectAll,
+//   findUserId: findUserId,
+//   insertUserId: insertUserId
+// }

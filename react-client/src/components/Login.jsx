@@ -29,29 +29,41 @@ class Login extends React.Component {
         'onfailure': this.onFailure
       });
     }
-
   }
 
+
   onSignIn(googleUser) {
+    var self = this;
 
-    this.props.userLogin(true);
+    gapi.load('auth2', function() {
+      gapi.auth2.init().then(function(auth2) {
+        // If the user is already signed in
+        if (auth2.isSignedIn.get()) {
+          var googleUser = auth2.currentUser.get();
+          var id_token = googleUser.getAuthResponse().id_token;
 
-    var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse().id_token;
+          // var profile = googleUser.getBasicProfile();
+          // var id_token = googleUser.getAuthResponse().id_token;
 
-    $.ajax({
-      url: "/login",
-      type: "POST",
-      data: {
-        id_token: id_token
-      }
-    }).done( (response) => {
-      window.location = response;
-
-    }).fail ( (err) => {
-        console.log(err);
-    })
-
+          $.ajax({
+            url: "/login",
+            type: "POST",
+            context: self,
+            data: {
+              id_token: id_token
+            },
+            success: function(response){
+              self.props.userLogin(true)
+              //if (response == 'created new session'){}
+              //if (response == 'have a valid session'){}
+            },
+            error: function(err) {
+              console.log(err)
+            }
+          });
+        }
+      });
+    });
   }
 
   render() {
@@ -62,7 +74,7 @@ class Login extends React.Component {
     }
 }
 
-
+// https://github.com/GoogleChromeLabs/google-sign-in/blob/master/static/scripts/introduction.js
 
 export default Login
 

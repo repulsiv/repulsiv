@@ -1,16 +1,17 @@
-DROP DATABASE IF EXISTS test;
+DROP DATABASE IF EXISTS greenfield;
 
-CREATE DATABASE test;
+CREATE DATABASE greenfield;
 
-USE test;
+USE greenfield;
 
-CREATE TABLE items (
-  id int NOT NULL AUTO_INCREMENT,
-  quantity integer NOT NULL,
-  description varchar(50) NOT NULL,
-  PRIMARY KEY (ID)
+CREATE TABLE users (
+  userId varchar(30) NOT NULL,
+  email varchar(100) NOT NULL,
+  username varchar(100) NOT NULL,
+  PRIMARY KEY (userId)
 );
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql
  *  to create the database and the tables.*/
+
