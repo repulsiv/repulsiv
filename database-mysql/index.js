@@ -15,6 +15,7 @@ catch(e) {
   }
 }
 
+
 // to connect  mysql -u <username> -p -h us-cdbr-iron-east-04.cleardb.net
 
 try {
@@ -36,14 +37,16 @@ const User = sequelize.define('user', {
   birthday: Sequelize.DATE
 });
 
-sequelize.sync()
-  .then(() => User.create({
-    username: 'janedoe',
-    birthday: new Date(1980, 6, 20)
-  }))
-  .then(jane => {
-    console.log(jane.toJSON());
-  });
+// sequelize.sync()
+//   .then(() => User.create({
+//     username: 'janedoe',
+//     birthday: new Date(1980, 6, 20)
+//   }))
+//   .then(jane => {
+//     console.log(jane.toJSON());
+//   });
 
 
 module.exports.User = User;
+
+
