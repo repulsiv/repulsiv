@@ -1,6 +1,7 @@
 ### node etc ###
-dist/bundle.js
+react-client/dist/bundle.js
 config.js
+react-client/dist/config.js
 # Logs
 logs
 *.log

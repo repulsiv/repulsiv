@@ -12,8 +12,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleSearch = this.handleSearch.bind(this)
-
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleLoginStatus = this.handleLoginStatus.bind(this);
 
     this.state = {
       items: [],
@@ -23,12 +23,11 @@ class App extends React.Component {
     }
   }
 
-  // handleLoginClick() {
-  //   this.setState({isLoggedIn: true});
-  // }
 
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+  handleLoginStatus(value) {
+    this.setState(prevState => ({
+      isLoggedIn: value
+    }));
   }
 
   handleFormSubmit(event) {
@@ -47,13 +46,14 @@ class App extends React.Component {
   }
 
   render () {
-    const isLoggedIn = this.state.isLoggedIn;
 
-    let button;
+    var isLoggedIn = this.state.isLoggedIn;
+    var button;
+
     if (isLoggedIn) {
-      button = <Logout onClick={this.handleLogoutClick} />;
+      button = <Logout userLogin={this.handleLoginStatus} />
     } else {
-      button = <Login isLoggedIn={this.state.isLoggedIn}/>
+      button = <Login userLogin={this.handleLoginStatus} />
     }
 
     let productList;
@@ -61,6 +61,12 @@ class App extends React.Component {
     return (
 
       <Grid>
+
+       <div>
+        {button}
+      </div>
+
+
        <Row>
           <Col md={10}>
             <code>&lt;{'Col sm={6}'} /&gt;</code>

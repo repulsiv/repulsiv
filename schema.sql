@@ -57,4 +57,3 @@ CREATE TABLE users_products (
 --     (3, 3, 4),
 --     (4, 4, 1)
 -- ;
-*/
