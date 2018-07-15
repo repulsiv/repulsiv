@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Lukas
+  - __Scrum Master__: shaital
+  - __Development Team Members__: Nasa, Khizra
 
 ## Table of Contents
 
@@ -24,11 +24,10 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Nodejs
+- Expressjs
+- Reactjs
+- MYSQL
 
 ## Development
 
