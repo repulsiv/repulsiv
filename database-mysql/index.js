@@ -97,5 +97,7 @@ module.exports = {
   selectAll: selectAll,
   findUserId: findUserId,
   insertUserId: insertUserId
+
 }
+
 
