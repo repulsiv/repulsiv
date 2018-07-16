@@ -5,7 +5,9 @@ import ProductList from './ProductList.jsx';
 import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 var sampleData = require('../mockData.js')
+
 
 class App extends React.Component {
   constructor(props) {
@@ -48,9 +50,11 @@ class App extends React.Component {
 
     var isLoggedIn = this.state.isLoggedIn;
     var button;
+    var watchList;
 
     if (isLoggedIn) {
       button = <Logout userLogin={this.handleLoginStatus} />
+      watchList = <div><Link to='/watchList'> WatchList </Link> </div>
     } else {
       button = <Login userLogin={this.handleLoginStatus} />
     }
@@ -97,6 +101,7 @@ class App extends React.Component {
             <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} />
             "search bar"
           </Col>
+
           <Col md={2} xs={2}>
             <code>&lt;{'Col sm={2}'} /&gt;</code>
             <br />
@@ -113,9 +118,9 @@ class App extends React.Component {
             <br />
             "contact-us: xxx-xxx-xxxx"
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
           </Col>
         </Row>
-
       </Grid>
 
   /*

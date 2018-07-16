@@ -1,9 +1,8 @@
 import React from 'react';
 var sampleData = require('../mockData.js')
 
+
 const ProductDetail = function(props) {
-
-
   // fetch the propduct detail by the id props.match.params.number
   var prods = props.items
   var clickedId = props.match.params.number
@@ -17,7 +16,6 @@ const ProductDetail = function(props) {
         <img src={image} />
     </div>)
 }
-
 
 
 export default ProductDetail
