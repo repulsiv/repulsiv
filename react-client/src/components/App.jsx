@@ -6,8 +6,7 @@ import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-var sampleData = require('../mockData.js')
-import { Collapse, Well } from 'react-bootstrap';
+var sampleData = require('../mockData.js');
 
 class App extends React.Component {
   constructor(props) {
