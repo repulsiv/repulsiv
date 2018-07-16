@@ -7,15 +7,44 @@ class ProductListItem extends React.Component {
   constructor(props) {
     super(props)
     this.handleToggle = this.handleToggle.bind(this)
-
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.state = {
+      isToggleChecked: false,
+      showInput: false
+    }
   }
 
+  handleKeyPress(event) {
+
+    if (event.key === 'Enter') {
+      var price = Number(event.target.value)
+      if (price) {
+        this.props.handleToggleState({threshold:price, itemId:this.props.value.itemId})
+        this.setState({
+          showInput: false
+        })
+      }
+    }
+  }
+
+
   handleToggle(event) {
-    this.props.handleToggleState(event.target.checked)
+    this.setState({
+        isToggleChecked: event.target.checked,
+        showInput: event.target.checked
+    })
   }
 
   render() {
+
     let toggleSwitch;
+    let thresholdInput;
+
+    if (this.state.isToggleChecked && this.state.showInput) {
+      thresholdInput =  <input type="text" placeholder="Enter threshold $ value" onKeyPress={this.handleKeyPress}/>
+    }
+
+
     if (this.props.isLoggedIn) {
       toggleSwitch = <span> <Toggle onChange={this.handleToggle}/> </span>
     }
@@ -24,6 +53,7 @@ class ProductListItem extends React.Component {
         <li>
           <Link to={`/products/${this.props.value.itemId}`} > {this.props.value.name} Price:${this.props.value.msrp}</Link>
           {toggleSwitch}
+          {thresholdInput}
         </li>
       </div>
       )
