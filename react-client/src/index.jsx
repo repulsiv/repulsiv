@@ -12,6 +12,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={App} />
-      <Route exact path="/watchlist" component={WatchList} />
+      <Route path="/watchlist" component={WatchList} />
+
     </Switch>
   </BrowserRouter>, document.getElementById('app'));
