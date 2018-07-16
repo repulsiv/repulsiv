@@ -15,6 +15,7 @@ class App extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleLoginStatus = this.handleLoginStatus.bind(this);
+    this.handleToggleState = this.handleToggleState.bind(this)
 
     this.state = {
       items: [],
@@ -24,6 +25,10 @@ class App extends React.Component {
     }
   }
 
+  handleToggleState(isChecked) {
+    // to ask user for threshhold to set
+
+  }
 
   handleLoginStatus(value) {
     this.setState(prevState => ({
@@ -98,7 +103,7 @@ class App extends React.Component {
             <br />
             <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} />
              <br /><br /><br /><br />
-            <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} />
+            <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} handleToggleState={this.handleToggleState}/>
             "search bar"
           </Col>
 
