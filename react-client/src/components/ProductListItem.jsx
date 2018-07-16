@@ -23,7 +23,17 @@ const ProductListItem = (props) => {
           {toggleSwitch}
           </Link>
         </li>
+
+
+
+        <div className="content">
+          <Route exact path='/products' component={ProductDetail}/>
+        </div>
+
       </div>
+
+
+
     </Router>
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
-function ProductDetail() {
+function ProductDetail(props) {
+  debugger;
   return <div> this is ProductDetail </div>
 }
 
