@@ -50,6 +50,13 @@ app.use(cookieSession({
   //   res.send('this is protected asset')
   // })
 
+
+  app.get('/products', (req, res) => {
+    console.log('inside products')
+    res.send('yayy - you are in products page')
+  })
+
+
   app.post('/login', (req, res) => {
 
     var token = req.body.id_token;
