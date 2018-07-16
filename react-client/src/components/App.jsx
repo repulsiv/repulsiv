@@ -96,7 +96,9 @@ class App extends React.Component {
           <Col md={2} xs={2}>
             <code>&lt;{'Col sm={2}'} /&gt;</code>
             <br />
-            "empty space"
+            "empty space on left"
+
+
           </Col>
           <Col md={8} xs={8}>
             <code>&lt;{'Col sm={8}'} /&gt;</code>
@@ -110,7 +112,10 @@ class App extends React.Component {
           <Col md={2} xs={2}>
             <code>&lt;{'Col sm={2}'} /&gt;</code>
             <br />
-            "empty space"
+            "empty space on right"
+
+             {watchList}
+
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

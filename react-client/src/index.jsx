@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
-import {Route, BrowserRouter, hashHistory } from 'react-router-dom'
+import WatchList from './components/WatchList.jsx';
+import {Route, BrowserRouter, Switch} from 'react-router-dom'
 
 
 
@@ -9,7 +10,8 @@ import {Route, BrowserRouter, hashHistory } from 'react-router-dom'
 
 ReactDOM.render(
   <BrowserRouter>
-  <div>
-    <Route path="/" component={App} />
-  </div>
+    <Switch>
+      <Route exact path="/" component={App} />
+      <Route exact path="/watchlist" component={WatchList} />
+    </Switch>
   </BrowserRouter>, document.getElementById('app'));

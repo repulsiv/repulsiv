@@ -5,7 +5,7 @@ import ProductDetail from './ProductDetail.jsx'
 
 
 const WatchList = function(props) {
-
+  return (<p> here the watchlist </p>)
 }
 
 
