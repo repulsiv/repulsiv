@@ -6,7 +6,7 @@ import ProductDetail from './ProductDetail.jsx'
 
 const ProductList = function(props) {
   const listItems = props.items.map((item, index) => {
-    return <ProductListItem key={index} value={item} isLoggedIn={props.isLoggedIn}/>
+    return <ProductListItem key={index} value={item} isLoggedIn={props.isLoggedIn} handleToggleState={props.handleToggleState}/>
   })
   var products = props.items
   return (
