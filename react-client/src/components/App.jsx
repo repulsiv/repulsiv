@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 var sampleData = require('../mockData.js')
-
+import { Collapse, Well } from 'react-bootstrap';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,12 +22,15 @@ class App extends React.Component {
       isLoggedIn: false,
       mockData: [],
 
+
     }
   }
 
-  handleToggleState(isChecked) {
+  handleToggleState(toggledItem) {
     // to ask user for threshhold to set
-
+    // then send this threshold value along with the checked item to server
+      // {threshold: 20, itemId: 3237623}
+      debugger;
   }
 
   handleLoginStatus(value) {
@@ -56,6 +59,8 @@ class App extends React.Component {
     var isLoggedIn = this.state.isLoggedIn;
     var button;
     var watchList;
+    var thresholdInput;
+    let productList;
 
     if (isLoggedIn) {
       button = <Logout userLogin={this.handleLoginStatus} />
@@ -64,7 +69,7 @@ class App extends React.Component {
       button = <Login userLogin={this.handleLoginStatus} />
     }
 
-    let productList;
+
 
     return (
 
