@@ -1,6 +1,5 @@
 import React from 'react';
 import Toggle from 'react-toggle'
-import ProductDetail from './ProductDetail.jsx'
 import { Link,  Route} from "react-router-dom";
 const ProductListItem = (props) => {
 
@@ -11,7 +10,7 @@ if (props.isLoggedIn) {
  return (
   <div>
     <li>
-      <Link to={`/products/${props.value.itemId}`}> { props.value.name } Price:${props.value.msrp}
+      <Link to={`/products/${props.value.itemId}`} > { props.value.name } Price:${props.value.msrp}
       {toggleSwitch}
       </Link>
     </li>

@@ -2,7 +2,6 @@ import React from 'react';
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
 import ProductList from './ProductList.jsx';
-import ProductDetail from './ProductDetail.jsx';
 import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
