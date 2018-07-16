@@ -26,7 +26,7 @@ class App extends React.Component {
     }
   }
 
-  handleToggleState(threshold) {
+  handleToggleState(toggledItem) {
     // to ask user for threshhold to set
     // then send this threshold value along with the checked item to server
       // {threshold: 20, itemId: 3237623}

@@ -19,7 +19,7 @@ class ProductListItem extends React.Component {
     if (event.key === 'Enter') {
       var price = Number(event.target.value)
       if (price) {
-        this.props.handleToggleState(price)
+        this.props.handleToggleState({threshold:price, itemId:this.props.value.itemId})
         this.setState({
           showInput: false
         })
