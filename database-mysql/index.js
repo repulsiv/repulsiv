@@ -80,9 +80,9 @@ var findUserId = function(userId, callback) {
   })
 }
 
+
 var insertUserId = function(userInfo, callback) {
   // userInfo = {sub: 1221233223, email:'abc@yahoo.com', username:'userABC'}
-
   connection.query('INSERT INTO users SET ?', userInfo, function(err, results, fields) {
     if (err) {
       callback(err, null);
@@ -92,8 +92,12 @@ var insertUserId = function(userInfo, callback) {
   })
 }
 
+
 module.exports = {
   selectAll: selectAll,
   findUserId: findUserId,
   insertUserId: insertUserId
+
 }
+
+
