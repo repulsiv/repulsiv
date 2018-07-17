@@ -81,45 +81,34 @@ class App extends React.Component {
 
        <Row>
           <Col md={10} xs={10}>
-            <code>&lt;{'Col sm={6}'} /&gt;</code>
             <br />
-            "Logo would appear here"
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           </Col>
 
           <Col md={2} xs={2}>
-            <code>&lt;{'Col sm={6}'} /&gt;</code>
             <br />
-            <input type="submit" value="login/logout"/>
-            "Signup/Login button"
+            "Logo would appear here"
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           </Col>
         </Row>
 
         <Row>
           <Col md={2} xs={2}>
-            <code>&lt;{'Col sm={2}'} /&gt;</code>
             <br />
             "empty space on left"
 
-
           </Col>
           <Col md={8} xs={8}>
-            <code>&lt;{'Col sm={8}'} /&gt;</code>
             <br />
             <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} />
              <br /><br /><br /><br />
             <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} handleToggleState={this.handleToggleState}/>
-            "search bar"
           </Col>
 
           <Col md={2} xs={2}>
-            <code>&lt;{'Col sm={2}'} /&gt;</code>
             <br />
             "empty space on right"
-
              {watchList}
-
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -128,9 +117,8 @@ class App extends React.Component {
 
         <Row>
           <Col md={12} xs={12}>
-            <code>&lt;{'Col sm={12}'} /&gt;</code>
             <br />
-            "contact-us: xxx-xxx-xxxx"
+            contact-us: 1 (800) 123-0000
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
           </Col>
