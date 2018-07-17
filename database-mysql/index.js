@@ -58,7 +58,6 @@ var connection = mysql.createConnection({
   database : config.DATABASE
 });
 
-<<<<<<< HEAD
 var selectAll = function(callback) {
   connection.query('SELECT * FROM users', function(err, results, fields) {
     if(err) {
@@ -66,15 +65,6 @@ var selectAll = function(callback) {
     } else {
       callback(null, results);
     }
-=======
-
-// to connect  mysql -u <username> -p -h us-cdbr-iron-east-04.cleardb.net
-
-try {
-  var sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWD, {
-  host: config.HOST,
-  dialect: 'mysql',
->>>>>>> deployed to heroku
   });
 };
 
@@ -103,25 +93,10 @@ var insertUserId = function(userInfo, callback) {
 }
 
 
-<<<<<<< HEAD
 module.exports = {
   selectAll: selectAll,
   findUserId: findUserId,
   insertUserId: insertUserId
 
 }
-=======
-// sequelize.sync()
-//   .then(() => User.create({
-//     username: 'janedoe',
-//     birthday: new Date(1980, 6, 20)
-//   }))
-//   .then(jane => {
-//     console.log(jane.toJSON());
-//   });
-
-
-module.exports.User = User;
->>>>>>> deployed to heroku
-
 
