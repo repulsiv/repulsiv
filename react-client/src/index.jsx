@@ -19,18 +19,31 @@ ReactDOM.render(
 
 
 // Order does matter for the routes.
-// In order for watchlist to work, if we had path="/" line first it was not working without putting exact path="/". because it was matching the first route i.e. '/' and rendering the same App for watchlist.
-// It was fine if we had only two routes '/' and '/watchlist' like
-  // <Route exact path="/" component={App} />
-  // <Route path="/watchlist" component={WatchList} />
 
-// BUT for /products/xxx, since we are rendering inside it same App component, having exact path '/' was breaking it. In order to make everything work, these are two of many solutions
+// Scenario 1: We have a '/watchlist' route that we want to render in fresh page and root '/' route.
+  // (Bad try!!) Why? because it routes are read in order and the first matching one gets rendered.
+   // <Route path="/" component={App} />
+   // <Route path="/watchlist" component={App} />
+// route /watchlist will NOT work and though the address changes in the address bar BUT it will still be App or '/' content.
+
+// Fix of Scenario 1:
+  // <Route exact path="/" component={App} />
+  // <Route path="/watchlist" component={App} />
+
+
+// Scenarion 2: We have an additonal route for a component that needs to be rendered inside 'App' component, part of which is dynamic, '/products/<id#>'
+// <Route exact path="/" component={App} />
+// <Route path="/watchlist" component={App} />
+
+// the config done in scenario 1 will not work for /products/xxx. Why? because of 'exact' in path '/'.
+
+// Fix of Scenerio 2 and 1:
 
 // 1- Either change the order e.g.
   // <Route path="/watchlist" component={WatchList} />
   // <Route path="/" component={App} />
 
-// 2- Add another router /products and render App again with no exact match since those routes are /products/<id>
+// 2- Add another router /products and render App again
   // <Route exact path="/" component={App} />
   // <Route path="/watchlist" component={WatchList} />
   // <Route path="/products" component={App} />
