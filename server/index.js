@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var {OAuth2Client} = require('google-auth-library');
 var db = require('../database-mysql');
 var cookieSession = require('cookie-session');
+var utils = require('./utils.js')
 
 try {
   var config = require('../config.js');
@@ -34,6 +35,7 @@ app.use(cookieSession({
   maxAge: 60000
 
 }))
+
 
   // ############ For debugging authentication  ##############
 
@@ -112,13 +114,42 @@ app.get('/logout', (req, res) => {
   res.end('session ended')
 })
 
+// ********** testing helper functions in utils.js psedocode
+
+app.post('/watchlist', (req, res) => {
+  // 1- get the data from client {threshold: 22, product: {} }
+  // 2- It then should add user infor to this data  (req.session.user) so we know which item is for which user
+    // 3- save this data to the database
+   userWatchListData = req.body
+   userWatchListData.sub = req.session.user
+   console.log(userWatchListData)
+   // now save this data to products table
+   res.send('successfully saved in db, if not send error ..')
+
+})
+
+
+app.get('/search', (req, res) => {
+  // should simply fetch Walmart data using helper function in utils and respond back (no db interaction)
+  console.log('in search get')
+  utils.onRequestFetcher(req.body.productName, (matchedProducts) => {
+    res.send(matchedProducts)
+  })
+})
+
+
+app.get('/watchlist', (req, res) => {
+  // should fetch Walmart data using helper function in utils
+  // fetches the data from database produncts tabe (that we we saved in watchlist post request)
+  // it should send only the data for the loggedin user
+  // In response something like userWatchedProducts = db.findAll({where: sub/user: req.session.user})
+    //res.end(userWatchedProducts)
+})
 
 
 app.listen(port, function() {
   console.log('listening on port  '+port);
 });
-
-
 
 
 
