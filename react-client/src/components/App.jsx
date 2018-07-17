@@ -20,7 +20,7 @@ class App extends React.Component {
       items: [],
       isLoggedIn: false,
       mockData: [],
-
+      username: ''
 
     }
   }
@@ -43,9 +43,10 @@ class App extends React.Component {
       })
   }
 
-  handleLoginStatus(value) {
+  handleLoginStatus(value, username) {
     this.setState(prevState => ({
-      isLoggedIn: value
+      isLoggedIn: value,
+      username: username
     }));
   }
 
@@ -73,10 +74,11 @@ class App extends React.Component {
     let productList;
 
     if (isLoggedIn) {
-      button = <Logout userLogin={this.handleLoginStatus} />
-      watchList = <div className="sidenav"><Link to='/watchList'> My Watch List </Link> </div>
+      var username = <h4> {this.state.username} </h4>
+      var button = <Logout userLogin={this.handleLoginStatus} />
+      var watchList = <div className="sidenav"><Link to='/watchList'> {username} watch list </Link> </div>
     } else {
-      button = <Login userLogin={this.handleLoginStatus} />
+      var button = <Login userLogin={this.handleLoginStatus} />
     }
 
 
@@ -93,6 +95,7 @@ class App extends React.Component {
        <Row>
           <Col md={10} xs={10}>
             <br />
+
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           </Col>
 

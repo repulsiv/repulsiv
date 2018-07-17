@@ -21,6 +21,7 @@
   "dependencies": {
     "angular": "^1.6.3",
     "body-parser": "^1.17.2",
+    "chart.js": "^2.7.2",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.15.0",
     "floating-label-react": "^0.2.0",
@@ -31,6 +32,7 @@
     "mysql2": "^1.5.3",
     "react": "^15.4.2",
     "react-bootstrap": "^0.32.1",
+    "react-chartjs-2": "^2.7.3",
     "react-dom": "^15.4.2",
     "react-router-dom": "^4.3.1",
     "react-toggle": "^4.0.2",

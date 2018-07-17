@@ -40,6 +40,7 @@ class Login extends React.Component {
     var self = this;
     var profile = googleUser.getBasicProfile();
     var id_token = googleUser.getAuthResponse().id_token;
+    var username = profile.getGivenName()
 
     $.ajax({
       url: "/login",
@@ -50,7 +51,7 @@ class Login extends React.Component {
       },
       success: function(response){
         // upon successfull sign-in - replace the sign-in button with logout
-        self.props.userLogin(true)
+        self.props.userLogin(true, username)
         //if (response == 'created new session'){}
         //if (response == 'have a valid session'){}
       },
