@@ -6,11 +6,10 @@ var data = require('../mockData.js');
 
 
 const WatchListItem = function(props) {
-  debugger
   var listItems = props.items.map((item) =>
     <li key={item.itemId.toString()}>
       <h4> {item.name} </h4>
-      <ProductChart item={item} />
+      <ProductChart data={item} />
     </li>
     );
 
@@ -18,7 +17,6 @@ const WatchListItem = function(props) {
     <ul> {listItems} </ul>
     )
 }
-
 
 
 const WatchList = function(props) {
@@ -46,7 +44,7 @@ const WatchList = function(props) {
     <Col md={8} xs={8}>
       <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
 
-      <WatchListItem items={data.mockData} />
+      <WatchListItem items={data.mockGraphData} />
 
     </Col>
 
