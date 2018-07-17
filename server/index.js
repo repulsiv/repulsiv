@@ -1,3 +1,6 @@
+
+// ref - https://developers.google.com/identity/sign-in/web/backend-auth
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var {OAuth2Client} = require('google-auth-library');
@@ -26,11 +29,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use(cookieSession({
-  name: 'repul1',
+  name: 'yecchy',
   keys: ['secret-to-sign-cookies'],
   maxAge: 60000
 
 }))
+
+  // ############ For debugging authentication  ##############
 
   // app.get('/invalid', (req, res) => {
   //   res.send('not valid session')
@@ -38,7 +43,6 @@ app.use(cookieSession({
 
   // function restrict(req, res, next) {
   //   if (req.session.user) {
-  //     console.log('the session is: ', req.session)
   //     next();
   //   } else {
   //     req.session.error = 'Access denied!';
@@ -50,6 +54,7 @@ app.use(cookieSession({
   //   res.send('this is protected asset')
   // })
 
+  // ############ ########################### ##############
 
   app.get('/products', (req, res) => {
     console.log('inside products')
@@ -87,27 +92,25 @@ app.use(cookieSession({
         }
       });
 
-      // if the cookie or session does not exist then create the user session
+      // either case (user exist or no), create session (i.e. cookie) IF the user does not exist or expired.
       if (!req.session.user) {
           req.session.user = userInfo.userid;
-          res.send('created new session');
+          res.end('created new session');
       }
-      // if user session valid then
+      // if the session is valid (i.e. cookie) then just respond with a message to make the ajax request successful.
       if (req.session.user) {
-        res.send('have a valid session');
+        res.end('have a valid session');
       }
     })
     .catch(console.error);
   });
 
 
-
+// Note this logout is terminating the session of this app and NOT the google session. This google sign-in api does not provide this functionality because of obvious reason and how single sign-on works.
 app.get('/logout', (req, res) => {
-  console.log('I AM IN SIGNOUT')
   req.session = null;
   res.end('session ended')
 })
-
 
 
 
