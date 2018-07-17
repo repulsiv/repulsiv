@@ -80,14 +80,14 @@ class App extends React.Component {
 
 
        <Row>
-          <Col md={10}>
+          <Col md={10} xs={10}>
             <code>&lt;{'Col sm={6}'} /&gt;</code>
             <br />
             "Logo would appear here"
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           </Col>
 
-          <Col md={2}>
+          <Col md={2} xs={2}>
             <code>&lt;{'Col sm={6}'} /&gt;</code>
             <br />
             <input type="submit" value="login/logout"/>
@@ -127,7 +127,7 @@ class App extends React.Component {
         </Row>
 
         <Row>
-          <Col md={12}>
+          <Col md={12} xs={12}>
             <code>&lt;{'Col sm={12}'} /&gt;</code>
             <br />
             "contact-us: xxx-xxx-xxxx"
