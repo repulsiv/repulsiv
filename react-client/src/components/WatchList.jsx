@@ -1,14 +1,16 @@
 import React from 'react';
 import {Route, Switch, PropsRoute} from 'react-router-dom'
 import { Grid, Row, Col} from 'react-bootstrap';
-var sampleData = require('../mockData.js');
+import ProductChart from './ProductChart.jsx';
+var data = require('../mockData.js');
 
 
 const WatchListItem = function(props) {
+  debugger
   var listItems = props.items.map((item) =>
     <li key={item.itemId.toString()}>
-      <h3> {item.name} </h3>
-      <Chart item={item} />
+      <h4> {item.name} </h4>
+      <ProductChart item={item} />
     </li>
     );
 
@@ -20,6 +22,7 @@ const WatchListItem = function(props) {
 
 
 const WatchList = function(props) {
+
   return (<Grid>
 
   <Row className="show-grid">
@@ -42,6 +45,9 @@ const WatchList = function(props) {
 
     <Col md={8} xs={8}>
       <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
+
+      <WatchListItem items={data.mockData} />
+
     </Col>
 
     <Col md={2} xs={2}>
