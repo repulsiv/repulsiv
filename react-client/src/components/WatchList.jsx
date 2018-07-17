@@ -1,11 +1,65 @@
 import React from 'react';
-import ProductListItem from './ProductListItem.jsx';
 import {Route, Switch, PropsRoute} from 'react-router-dom'
-import ProductDetail from './ProductDetail.jsx'
+import { Grid, Row, Col} from 'react-bootstrap';
+var sampleData = require('../mockData.js');
+
+
+const WatchListItem = function(props) {
+  var listItems = props.items.map((item) =>
+    <li key={item.itemId.toString()}>
+      <h3> {item.name} </h3>
+      <Chart item={item} />
+    </li>
+    );
+
+  return (
+    <ul> {listItems} </ul>
+    )
+}
+
 
 
 const WatchList = function(props) {
-  return (<p> here the watchlist </p>)
+  return (<Grid>
+
+  <Row className="show-grid">
+    <Col md={10} xs={10}>
+      <code>&lt;{'Col xs={12} md={8}'} /">&gt;</code>
+       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </Col>
+
+    <Col md={2} xs={2}>
+      <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
+       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </Col>
+  </Row>
+
+
+  <Row className="show-grid">
+    <Col md={2} xs={2}>
+      <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
+    </Col>
+
+    <Col md={8} xs={8}>
+      <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
+    </Col>
+
+    <Col md={2} xs={2}>
+      <code>&lt;{'Col xsHidden md={4}'} /">&gt;</code>
+    </Col>
+  </Row>
+
+
+  <Row className="show-grid">
+    <Col md={12} xs={12}>
+      <code>&lt;{'Col md={6} mdPush={6}'} /">&gt;</code>
+      <br />
+      "contact-us: xxx-xxx-xxxx"
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </Col>
+  </Row>
+
+</Grid>)
 }
 
 
