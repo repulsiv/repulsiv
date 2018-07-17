@@ -1,7 +1,7 @@
 import React from 'react';
 import Toggle from 'react-toggle'
 import { Link,  Route} from "react-router-dom";
-
+import {InputGroup, FormControl} from 'react-bootstrap'
 class ProductListItem extends React.Component {
 
   constructor(props) {
@@ -41,7 +41,8 @@ class ProductListItem extends React.Component {
     let thresholdInput;
 
     if (this.state.isToggleChecked && this.state.showInput) {
-      thresholdInput =  <input type="text" placeholder="Enter threshold $ value" onKeyPress={this.handleKeyPress}/>
+      // thresholdInput =  <input type="text" placeholder="Enter threshold $ value" onKeyPress={this.handleKeyPress}/>
+      thresholdInput = <InputGroup><InputGroup.Addon>$</InputGroup.Addon> <FormControl className="priceInput" type="text" onKeyPress={this.handleKeyPress} /></InputGroup>
     }
 
 
