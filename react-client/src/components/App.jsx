@@ -63,7 +63,7 @@ class App extends React.Component {
 
     if (isLoggedIn) {
       button = <Logout userLogin={this.handleLoginStatus} />
-      watchList = <div><Link to='/watchList'> WatchList </Link> </div>
+      watchList = <div className="sidenav"><Link to='/watchList'> My Watch List </Link> </div>
     } else {
       button = <Login userLogin={this.handleLoginStatus} />
     }
@@ -80,46 +80,35 @@ class App extends React.Component {
 
 
        <Row>
-          <Col md={10}>
-            <code>&lt;{'Col sm={6}'} /&gt;</code>
+          <Col md={10} xs={10}>
+            <br />
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          </Col>
+
+          <Col md={2} xs={2}>
             <br />
             "Logo would appear here"
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           </Col>
-
-          <Col md={2}>
-            <code>&lt;{'Col sm={6}'} /&gt;</code>
-            <br />
-            <input type="submit" value="login/logout"/>
-            "Signup/Login button"
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-          </Col>
         </Row>
 
         <Row>
           <Col md={2} xs={2}>
-            <code>&lt;{'Col sm={2}'} /&gt;</code>
             <br />
             "empty space on left"
 
-
           </Col>
           <Col md={8} xs={8}>
-            <code>&lt;{'Col sm={8}'} /&gt;</code>
             <br />
             <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} />
              <br /><br /><br /><br />
             <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} handleToggleState={this.handleToggleState}/>
-            "search bar"
           </Col>
 
           <Col md={2} xs={2}>
-            <code>&lt;{'Col sm={2}'} /&gt;</code>
             <br />
             "empty space on right"
-
              {watchList}
-
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -127,10 +116,9 @@ class App extends React.Component {
         </Row>
 
         <Row>
-          <Col md={12}>
-            <code>&lt;{'Col sm={12}'} /&gt;</code>
+          <Col md={12} xs={12}>
             <br />
-            "contact-us: xxx-xxx-xxxx"
+            contact-us: 1 (800) 123-0000
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
           </Col>
