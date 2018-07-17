@@ -63,4 +63,67 @@ var mockData = [
 
 }]
 
-module.exports.mockData = mockData
+
+
+var mockGraphData = [
+
+
+{
+  "itemId": 245889258,
+  "parentItemId": 245889258,
+  "name": "Apple Watch Series 3 38mm Case, by Insten Full Cover Protector Crystal Clear Snap On Cover Case Perfect Fit For Apple Watch Series 3 38mm, Clear (Anti-Scratch)(Shock Absorption)(Fingerprint-proof)",
+  "msrp": [12.79, 12.66, 11.22, 10.33],
+  "salePrice": [5.59, 5.44, 5.12, 5.00],
+  "createdAt": ["2018-05-30 00:00:00", "2018-05-30 00:10:00", "2018-05-22 00:20:00", "2018-05-22 00:30:00"]
+},
+
+{
+  "itemId": 385235179,
+  "parentItemId": 385235179,
+  "name": "Apple Watch Series 2 Case 38mm,iClover Full Cover Apple Watch Series 2 Nike Case Slim Hard PC Plated Protective Bumper Cover & 0.2mm Shockproof Screen Protector for iWatch 2016, Rose Gold",
+  "msrp": [12.79, 12.79, 12.79, 12.79],
+  "salePrice": [6.59, 6.59, 6.77, 3.44],
+  "createdAt": ["2018-12-11 00:20:00", "2018-12-11 00:30:00", "2018-12-11 00:40:00", "2018-12-11 00:50:00"]
+},
+
+{
+  "itemId": 46470039,
+  "parentItemId": 46470039,
+  "name": "Apple Watch 42mm Tempered Glass Screen Protector",
+  "msrp": [11.99, 2.00, 11.33],
+  "salePrice": [9.54, 1.66, 10.11],
+  "createdAt": ["2016-02-17 07:12:00", "2016-02-17 07:22:00", "2016-02-17 07:32:00"]
+
+},
+
+
+{
+  "itemId": 55935552,
+  "parentItemId": 55935552,
+  "name": "Beikel Apple Watch 3 42mm Soft Silicone Replacement Sport Band for Apple Watch Series 1 2 & 3",
+  "msrp": [10.9],
+  "salePrice": [9.7],
+  "createdAt": ["2018-06-04 06:10:44",]
+},
+
+
+
+
+{
+  "itemId": 861721256,
+  "parentItemId": 861721256,
+  "name": "LUVVITT [Super Easy] Built-in Screen Protector Snap-On Case Hard Cover for Apple Watch Series 2",
+  "msrp": [10.9, 10.9, 11.0],
+  "salePrice": [9.99, 8.99, 10.00],
+  "createdAt": ["2015-08-12 11:22:33","2015-08-12 11:32:33", "2015-08-12 11:42:56"]
+
+}]
+
+module.exports = {
+  mockData: mockData,
+  mockGraphData: mockGraphData
+}
+
+
+
+
