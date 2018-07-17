@@ -63,7 +63,7 @@ class App extends React.Component {
 
     if (isLoggedIn) {
       button = <Logout userLogin={this.handleLoginStatus} />
-      watchList = <div><Link to='/watchList'> WatchList </Link> </div>
+      watchList = <div className="sidenav"><Link to='/watchList'> My Watch List </Link> </div>
     } else {
       button = <Login userLogin={this.handleLoginStatus} />
     }
