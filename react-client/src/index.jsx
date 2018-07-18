@@ -4,7 +4,7 @@ import App from './components/App.jsx';
 import WatchList from './components/WatchList.jsx';
 import {Route, BrowserRouter, Switch} from 'react-router-dom'
 import ProductList from './components/ProductList.jsx';
-
+import WatchList2 from './components/WatchList2.jsx';
 
 // ReactDOM.render(<App />, document.getElementById('app'))
 
@@ -12,7 +12,7 @@ import ProductList from './components/ProductList.jsx';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/watchlist" component={WatchList} />
+      <Route path="/watchlist" component={WatchList2} />
       <Route path="/" component={App} />
     </Switch>
   </BrowserRouter>, document.getElementById('app'));
