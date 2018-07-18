@@ -1,5 +1,6 @@
 const request = require('request');
-const config = require('./config.js')
+const config = require('./config.js');
+const nodemailer = require('nodemailer');
 
 module.exports = {
   routineFetcher: function(itemId, callback) {
@@ -44,6 +45,31 @@ module.exports = {
         callback(products.items)
       }
     })
+  },
+
+
+  sendEmail: (userEmail) => {
+    var transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+        user: config.EMAIL_USER, //repulsiv.hr@gmail.com
+        pass: config.EMAIL_PASS
+      }
+    });
+
+    const mailOptions = {
+      from: config.EMAIL_USER,
+      to: userEmail,
+      subject: 'Product Info from Repulsiv',
+      html: '<p> Your product in watchlist has hit the threshold, more info on website. </p>'
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+       if(err)
+         console.log(err)
+       else
+         console.log(info);
+    });
   }
 }
 
