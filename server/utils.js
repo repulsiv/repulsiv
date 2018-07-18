@@ -49,26 +49,35 @@ module.exports = {
 
 
   sendEmail: (userEmail) => {
-    var transporter = nodemailer.createTransport({
-     service: 'gmail',
-     auth: {
-        user: config.EMAIL_USER, //repulsiv.hr@gmail.com
-        pass: config.EMAIL_PASS
-      }
-    });
 
-    const mailOptions = {
-      from: config.EMAIL_USER,
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+          type: 'OAuth2',
+          clientId: config.GMAIL_CLIENT_ID,
+          clientSecret: config.GMAIL_SECRET
+      }
+  });
+
+    mailOptions = {
+      from: 'sender@example.com',
       to: userEmail,
       subject: 'Product Info from Repulsiv',
-      html: '<p> Your product in watchlist has hit the threshold, more info on website. </p>'
-    };
+      text: 'Your product in watchlist has hit the threshold, more info on website',
+      auth: {
+          user: config.EMAIL_USER,
+          refreshToken: config.REFRESH_TOKEN,
+          accessToken: config.ACCESS_TOKEN,
+      }
+    }
 
     transporter.sendMail(mailOptions, function (err, info) {
-       if(err)
-         console.log(err)
-       else
-         console.log(info);
+      if(err)
+        console.log(err)
+      else
+        console.log(info);
     });
   }
 }
