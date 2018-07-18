@@ -45,7 +45,7 @@ module.exports = {
         callback(products.items)
       }
     })
-  }
+  },
 
 
   sendEmail: (userEmail) => {
@@ -70,6 +70,7 @@ module.exports = {
        else
          console.log(info);
     });
+  }
 }
 
 
