@@ -9,8 +9,9 @@ const WatchListItem = function(props) {
   var listItems = props.items.map((item) =>
     <li key={item.itemId.toString()}>
       <h4> {item.name} </h4>
-      <ProductChart data={item} />
       <img src={item.mediumImage} />
+      <ProductChart data={item} />
+
     </li>
     );
 
