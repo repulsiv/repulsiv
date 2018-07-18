@@ -12,7 +12,7 @@ import WatchList2 from './components/WatchList2.jsx';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/watchlist" component={WatchList2} />
+      <Route path="/watchlist" component={WatchList} />
       <Route path="/" component={App} />
     </Switch>
   </BrowserRouter>, document.getElementById('app'));

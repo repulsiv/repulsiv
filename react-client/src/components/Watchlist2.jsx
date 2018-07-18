@@ -8,7 +8,9 @@ var mockGraphData = [
     "name": "Apple Watch Series 3 38mm Case, by Insten Full Cover Protector Crystal Clear Snap On Cover Case Perfect Fit For Apple Watch Series 3 38mm, Clear (Anti-Scratch)(Shock Absorption)(Fingerprint-proof)",
     "msrp": [12.79, 12.66, 11.22, 10.33],
     "salePrice": [5.59, 5.44, 5.12, 5.00],
-    "createdAt": ["2018-05-30 00:00:00", "2018-05-30 00:10:00", "2018-05-22 00:20:00", "2018-05-22 00:30:00"]
+    "createdAt": ["2018-05-30 00:00:00", "2018-05-30 00:10:00", "2018-05-22 00:20:00", "2018-05-22 00:30:00"],
+    "mediumImage": 'https://i5.walmartimages.com/asr/9688d5d3-d404-47f3-9ad9-f86f2de2ed5d_1.ed3ae30343b99a2b6cdfb26b25595bee.jpeg?odnHeight=180&odnWidth=180&odnBg=FFFFFF',
+    "largeImage": 'https://i5.walmartimages.com/asr/9688d5d3-d404-47f3-9ad9-f86f2de2ed5d_1.ed3ae30343b99a2b6cdfb26b25595bee.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'
   },
 
   {

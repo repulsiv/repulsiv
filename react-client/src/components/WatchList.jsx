@@ -10,6 +10,7 @@ const WatchListItem = function(props) {
     <li key={item.itemId.toString()}>
       <h4> {item.name} </h4>
       <ProductChart data={item} />
+      <img src={item.mediumImage} />
     </li>
     );
 
@@ -45,7 +46,6 @@ const WatchList = function(props) {
       <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
 
       <WatchListItem items={data.mockGraphData} />
-
     </Col>
 
     <Col md={2} xs={2}>

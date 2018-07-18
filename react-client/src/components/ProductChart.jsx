@@ -45,37 +45,9 @@ class ProductChart extends React.Component {
   }
 
   render() {
-    var chartOptions: {
-      scales: {
-        xAxes: [{
-          title: {text: "time"}, //not working
-          type: 'time',
-          time: {
-            unit: "min",
-            unitStepSize: 1000,
-            displayFormats: {
-              millisecond: 'MMM DD',
-              second: 'MMM DD',
-              minute: 'MMM DD',
-              hour: 'MMM DD',
-              day: 'MMM DD',
-              week: 'MMM DD',
-              month: 'MMM DD',
-              quarter: 'MMM DD',
-              year: 'MMM DD',
-            }
-          }
-        }],
-        yAxes: [{
-          title: 'msrp' //not working
-        }]
-      }
-    }
-
-
     return (
       <div>
-        <Line data={this.state.data} options={chartOptions}/>
+        <Line data={this.state.data}/>
       </div>
       )
     }
