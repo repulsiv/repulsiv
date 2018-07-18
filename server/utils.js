@@ -48,7 +48,7 @@ module.exports = {
   }
 
 
-  sendEmailToUser: (userEmail) => {
+  sendEmail: (userEmail) => {
     var transporter = nodemailer.createTransport({
      service: 'gmail',
      auth: {
