@@ -38,6 +38,21 @@ class ProductChart extends React.Component {
     ]
   };
 
+  this.chartOptions = {
+
+    scales: {
+
+      yAxes: [{
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '$' + value;
+          }
+        }
+      }]
+    }
+  }
+
     this.state = {
       data: data
     }
@@ -47,7 +62,7 @@ class ProductChart extends React.Component {
   render() {
     return (
       <div>
-        <Line data={this.state.data}/>
+        <Line data={this.state.data} options={this.chartOptions}/>
       </div>
       )
     }
