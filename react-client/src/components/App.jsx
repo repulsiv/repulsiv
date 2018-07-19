@@ -65,7 +65,8 @@ class App extends React.Component {
       "msrp": null,
       "salePrice": null,
       "thumbnailImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg',
-      "mediumImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg'
+      "mediumImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg',
+      "largeImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg'
     }]
 
 

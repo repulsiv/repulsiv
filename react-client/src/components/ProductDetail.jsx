@@ -7,7 +7,7 @@ const ProductDetail = function(props) {
   var prods = props.items
   var clickedId = props.match.params.number
 
-  var image = prods.filter((item) => {return item.itemId === Number(clickedId) })[0].mediumImage
+  var image = prods.filter((item) => {return item.itemId === Number(clickedId) })[0].largeImage
   var shortDescription = prods.filter((item) => {return item.itemId === Number(clickedId) })[0].shortDescription
 
   return (
