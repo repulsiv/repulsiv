@@ -31,7 +31,7 @@ class App extends React.Component {
       // {threshold: 20, product: {itemId: - , name: - , ...} }
       debugger;
       $.ajax({
-        url: 'http://localhost:3000/watchList',
+        url: '/watchList',
         method: 'POST',
         data: toggledItem,
         success: (response) => {
@@ -57,17 +57,34 @@ class App extends React.Component {
 
 
   fetch(productToSearch, cb) {
+    let self = this;
+    var notFoundCase = [{
+      "itemId": 1000001,
+      "parentItemId": 100001,
+      "name": 'Sorry, item not found',
+      "msrp": null,
+      "salePrice": null,
+      "thumbnailImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg',
+      "mediumImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg'
+    }]
+
+
     $.ajax({
       url: '/search',
-      type: 'GET',
-      contentType: 'application/json',
+      method: 'GET',
+      context: self,
       data: {productName: productToSearch},
       success: (products) => {
-        debugger
-        cb(products)
-        console.log('SUCCESS');
+        if (products === '') {
+          cb(notFoundCase)
+        }
+        else {
+          cb(products)
+        }
+
       },
       error: function (err) {
+        debugger
         console.log(err);
       }
     })
