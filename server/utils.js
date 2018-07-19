@@ -63,7 +63,7 @@ module.exports = {
       }
   });
 
-    mailOptions = {
+    const mailOptions = {
       from: 'sender@example.com',
       to: userEmail,
       subject: 'Product Info from Repulsiv',
