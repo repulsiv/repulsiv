@@ -5,17 +5,42 @@ import ProductChart from './ProductChart.jsx';
 var data = require('../mockData.js');
 
 
-const WatchListItem = function(props) {
-  var listItems = props.items.map((item) =>
+class WatchListItem extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.handleRemove = this.handleRemove.bind(this)
+    this.state = {
+      items: this.props.items
+
+    }
+  }
+
+  handleRemove(itemToRemove) {
+    itemToRemove.itemId
+    var filteredArary = this.state.items.filter((item) => { return (item.itemId !== itemToRemove.itemId) })
+    this.setState({
+      items:filteredArary
+    })
+  }
+
+  render() {
+
+  var listItems = this.state.items.map((item) =>
     <li key={item.itemId.toString()}>
       <h4> {item.name} </h4>
+      <img src={item.mediumImage} />
       <ProductChart data={item} />
+      <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(item)} />
+
     </li>
     );
 
   return (
     <ul> {listItems} </ul>
     )
+  }
+
 }
 
 
@@ -44,8 +69,7 @@ const WatchList = function(props) {
     <Col md={8} xs={8}>
       <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
 
-      <WatchListItem items={data.mockGraphData} />
-
+      <WatchListItem items={data.mockGraphData}/>
     </Col>
 
     <Col md={2} xs={2}>

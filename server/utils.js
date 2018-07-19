@@ -19,9 +19,10 @@ module.exports = {
     let url = uri + endpoint + query
 
     request.get(url, (err, response, body) => {
+      if (err) callback(err, null)
       if (!err && response.statusCode === 200) {
         var product = JSON.parse(body)
-        callback(product)
+        callback(null, product)
       }
     })
   },
@@ -39,47 +40,58 @@ module.exports = {
 
     // by default it sorts with 'relevance' and returns only 10 items (numItems=10)
     request.get(url, function(err, response, body) {
+      if (err) callback(err, null)
       if (!err && response.statusCode === 200) {
         var products = JSON.parse(body)
         // products.items is an array of items
-        callback(products.items)
+        callback(null, products.items)
       }
     })
   },
 
 
   sendEmail: (userEmail) => {
-    var transporter = nodemailer.createTransport({
-     service: 'gmail',
-     auth: {
-        user: config.EMAIL_USER, //repulsiv.hr@gmail.com
-        pass: config.EMAIL_PASS
+
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+          type: 'OAuth2',
+          clientId: config.GMAIL_CLIENT_ID,
+          clientSecret: config.GMAIL_SECRET
       }
-    });
+  });
 
     const mailOptions = {
-      from: config.EMAIL_USER,
+      from: 'sender@example.com',
       to: userEmail,
       subject: 'Product Info from Repulsiv',
-      html: '<p> Your product in watchlist has hit the threshold, more info on website. </p>'
-    };
+      text: 'Your product in watchlist has hit the threshold, more info on website',
+      auth: {
+          user: config.EMAIL_USER,
+          refreshToken: config.REFRESH_TOKEN,
+          accessToken: config.ACCESS_TOKEN,
+      }
+    }
 
     transporter.sendMail(mailOptions, function (err, info) {
-       if(err)
-         console.log(err)
-       else
-         console.log(info);
+      if(err)
+        console.log(err)
+      else
+        console.log(info);
     });
   }
 }
 
 
-// module.exports.onRequestFetcher('cereal', (products) => {
-//   console.log(products)
+// module.exports.onRequestFetcher('cereal', (err, products) => {
+//   console.log(err, products)
 // })
 
 
-// module.exports.routineFetcher('10789576', (product)=> {
-//   console.log(product)
+// module.exports.routineFetcher('10789576', (err, product)=> {
+//   console.log(err, product)
 // })
+
 

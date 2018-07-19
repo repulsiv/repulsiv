@@ -5,7 +5,6 @@ import WatchList from './components/WatchList.jsx';
 import {Route, BrowserRouter, Switch} from 'react-router-dom'
 import ProductList from './components/ProductList.jsx';
 
-
 // ReactDOM.render(<App />, document.getElementById('app'))
 
 // REMEMBER: Order of routes DOES matter!!
