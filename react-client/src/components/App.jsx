@@ -20,7 +20,7 @@ class App extends React.Component {
       items: [],
       isLoggedIn: false,
       mockData: [],
-      username: ''
+      username: '',
 
     }
   }
@@ -55,13 +55,36 @@ class App extends React.Component {
 
   }
 
-  handleSearch(e) {
-    // perform ajax call to get get the data
 
+  fetch(productToSearch, cb) {
+    $.ajax({
+      url: '/search',
+      type: 'GET',
+      contentType: 'application/json',
+      data: {productName: productToSearch},
+      success: (products) => {
+        debugger
+        cb(products)
+        console.log('SUCCESS');
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    })
+  }
+
+
+  handleSearch(e) {
     if (e.key ===  'Enter') {
-      this.setState({
-        mockData: sampleData.mockData
-      })
+      if (e.target.value) {
+        this.fetch(e.target.value, (products) => {
+        this.setState({
+          mockData: products
+          })
+        })
+      }
+
+
     }
   }
 
@@ -114,7 +137,7 @@ class App extends React.Component {
           </Col>
           <Col md={8} xs={8}>
             <br />
-            <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} />
+            <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} onChange={this.handleSearch}/>
              <br /><br /><br /><br />
             <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} handleToggleState={this.handleToggleState}/>
           </Col>
