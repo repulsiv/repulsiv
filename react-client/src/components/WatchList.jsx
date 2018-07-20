@@ -2,19 +2,38 @@ import React from 'react';
 import {Route, Switch, PropsRoute} from 'react-router-dom'
 import { Grid, Row, Col} from 'react-bootstrap';
 import ProductChart from './ProductChart.jsx';
+import $ from 'jquery'
 import Header from './Header.jsx'
-var data = require('../mockData.js');
+// var data = require('../mockData.js');
 
 
 class WatchListItem extends React.Component {
 
   constructor(props) {
-    super(props)
-    this.handleRemove = this.handleRemove.bind(this)
-    this.state = {
-      items: this.props.items
+    super(props);
+    this.handleRemove = this.handleRemove.bind(this);
 
+    this.state = {
+      items: [{itemId:'', name:'', mediumImage:''}]
     }
+  }
+
+
+  componentDidMount() {
+    var self = this;
+    console.log('in component did mount!!!')
+      $.ajax({
+      url: "/watchlist",
+      context: self,
+      success: function(result){
+        debugger
+        // result.map()
+        self.setState({items: result})
+      },
+      error: function(err) {
+        console.log(err)
+      }
+    });
   }
 
   handleRemove(itemToRemove) {
@@ -56,7 +75,7 @@ const WatchList = function(props) {
     </Col>
 
     <Col md={8} xs={8}>
-      <WatchListItem items={data.mockGraphData}/>
+      <WatchListItem />
     </Col>
 
     <Col md={2} xs={2}>

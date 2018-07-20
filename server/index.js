@@ -148,6 +148,25 @@ app.get('/search', (req, res) => {
 })
 
 
+app.get('/watchlist', (req, res) => {
+  // should fetch Walmart data using helper function in utils
+  // fetches the data from database produncts tabe (that we we saved in watchlist post request)
+  // it should send only the data for the loggedin user
+  // In response something like userWatchedProducts = db.findAll({where: sub/user: req.session.user})
+    //res.end(userWatchedProducts)
+    var userid = req.session.user;
+
+
+    db.sequelize.query("SELECT * FROM `products` INNER JOIN `userProducts` ON (products.id = userProducts.productId) INNER JOIN `users` ON (userProducts.userId = users.id) where users.uid = " + userid).then( (result) => {
+      console.log(result);
+      res.send(result[0]);
+    })
+    // db.sequelize.query("select users.username, productPrices.price, productPrices.createdAt from `productPrices` inner join `userProducts` on productPrices.productId = userProducts.productId inner join `users` on users.id = userProducts.userId")
+    // .then( (result) => {
+    //   console.log(result);
+    //   res.send(result);
+    // })
+})
 
 app.listen(port, function() {
   console.log('listening on port  '+port);
