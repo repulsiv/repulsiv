@@ -4,9 +4,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var {OAuth2Client} = require('google-auth-library');
-var db = require('../database-mysql');
 var cookieSession = require('cookie-session');
 var utils = require('./utils.js')
+var db = require('../database-mysql/connection.js')
 
 try {
   var config = require('../config.js');
@@ -71,7 +71,7 @@ app.use(cookieSession({
       var userid = payload['sub'];
 
       return userInfo = {
-        userid: userid,
+        uid: String(userid),
         email: payload['email'],
         username: payload['email']
       }
@@ -80,23 +80,22 @@ app.use(cookieSession({
     verify()
     // after tokenid is verified
     .then( (userInfo) => {
-      // check if userid exists in db
-      db.findUserId(userInfo.userid, (err, result) => {
-        if (result === null || (Array.isArray(result) && result.length === 0)) {
-          // if not then insert the id in db
-          db.insertUserId(userInfo, (err, result) => {})
+      // check if userid exists in db if not then insert the id in db
+      db.User.findOrCreate({ where: userInfo }).then((result) => {
+        // if (result === null || (Array.isArray(result) && result.length === 0)) {
+        // }
+
+        if (!req.session.user) {
+            req.session.user = userInfo.userid;
+            res.end('created new session');
+        }
+        // if the session is valid (i.e. cookie) then just respond with a message to make the ajax request successful.
+        if (req.session.user) {
+          res.end('have a valid session');
         }
       });
-
       // either case (user exist or no), create session (i.e. cookie) IF the user does not exist or expired.
-      if (!req.session.user) {
-          req.session.user = userInfo.userid;
-          res.end('created new session');
-      }
-      // if the session is valid (i.e. cookie) then just respond with a message to make the ajax request successful.
-      if (req.session.user) {
-        res.end('have a valid session');
-      }
+
     })
     .catch(console.error);
   });
@@ -117,15 +116,17 @@ app.post('/watchlist', (req, res) => {
 
    var productToWatch = req.body.productToWatch
    var threshold = req.body.threshold;
-   var uid = req.session.user;
-   console.log(uid, threshold)
-   // db.User.findOrCreate({where: {uid:uid, username:'khz', email:'v@abc.com'}}).then( (user) => {
-   //  user = user[0]
-   //  db.Product.findOrCreate({where: productToWatch }).then((product) => {
-   //    product = product[0]
-   //    user.addProduct(product, {through: {threshold: threshold}}) // THIS IS THE ID FIELD OF JOIN TABLE!!!!
-   //  })
-  // })
+
+   var uid = String(req.session.user);
+   console.log('-----+++++++-----', req.session.user)
+
+   db.User.findOrCreate({where: {uid:uid} }).then( (user) => {
+    user = user[0]
+    db.Product.findOrCreate({where: productToWatch }).then((product) => {
+      product = product[0]
+      user.addProduct(product, {through: {threshold: threshold}}) // THIS IS THE ID FIELD OF JOIN TABLE!!!!
+    })
+  })
 
 
    // console.log(userWatchListData)
