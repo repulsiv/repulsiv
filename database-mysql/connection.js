@@ -1,17 +1,33 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('repulsiv', 'root', '', {
-  host: 'localhost',
+
+try {
+  config = require('./config.js')
+}
+
+
+catch(e) {
+  config = {
+    HOST    : process.env.CLEARDB_DATABASE_HOST,
+    USER    : process.env.CLEARDB_DATABASE_USER,
+    PASSWD  : process.env.CLEARDB_DATABASE_PASSWD,
+    DATABASE : process.env.CLEARDB_DATABASE,
+    CLIENT_ID: process.env.CLIENT_ID,
+    PORT: 3306
+  }
+}
+
+// to connect  mysql -u <username> -p -h us-cdbr-iron-east-04.cleardb.net
+
+try {
+  var sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWD, {
+  host: config.HOST,
   dialect: 'mysql',
-  operatorsAliases: false,
+ });
+}
+catch(e) {
+  console.log(e)
+}
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-
-});
 
 sequelize
   .authenticate()
@@ -24,7 +40,7 @@ sequelize
 
 const User = sequelize.define('user', {
   uid: {
-    type: Sequelize.BIGINT
+    type: Sequelize.STRING, allowNull: false
   },
   username: {
     type: Sequelize.STRING
@@ -59,7 +75,7 @@ const Product = sequelize.define('product',  {
     type: Sequelize.STRING
   },
    mediumImage: {
-    type: Sequelize.FLOAT
+    type: Sequelize.TEXT
   },
    largeImage: {
     type: Sequelize.TEXT
