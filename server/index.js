@@ -1,12 +1,13 @@
-
 // ref - https://developers.google.com/identity/sign-in/web/backend-auth
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var {OAuth2Client} = require('google-auth-library');
-var cookieSession = require('cookie-session');
-var utils = require('./utils.js')
+// var db = require('../database-mysql');
 var db = require('../database-mysql/connection.js')
+var utils = require('./utils.js')
+
+var cookieSession = require('cookie-session');
 
 try {
   var config = require('../config.js');
@@ -36,7 +37,6 @@ app.use(cookieSession({
 
 }))
 
-
   // ############ For debugging authentication  ##############
 
   // app.get('/invalid', (req, res) => {
@@ -58,8 +58,11 @@ app.use(cookieSession({
 
   // ############ ########################### ##############
 
-  app.post('/login', (req, res) => {
 
+
+  app.post('/login', (req, res) => {
+    console.log('*******')
+    console.log(req.session)
     var token = req.body.id_token;
 
     async function verify() {
@@ -71,7 +74,7 @@ app.use(cookieSession({
       var userid = payload['sub'];
 
       return userInfo = {
-        uid: String(userid),
+        uid: userid,
         email: payload['email'],
         username: payload['email']
       }
@@ -80,23 +83,24 @@ app.use(cookieSession({
     verify()
     // after tokenid is verified
     .then( (userInfo) => {
-      // check if userid exists in db if not then insert the id in db
-      db.User.findOrCreate({ where: userInfo }).then((result) => {
-        // if (result === null || (Array.isArray(result) && result.length === 0)) {
-        // }
-      });
+      // check if userid exists in db
+      // db.findUserId(userInfo.userid, (err, result) => {
+      //   if (result === null || (Array.isArray(result) && result.length === 0)) {
+      //     // if not then insert the id in db
+      //     db.insertUserId(userInfo, (err, result) => {})
+      //   }
+      // });
+      db.User.findOrCreate({ where: userInfo }).then((result) => {})
+
       // either case (user exist or no), create session (i.e. cookie) IF the user does not exist or expired.
-
-
       if (!req.session.user) {
-          req.session.user = userInfo.userid;
+          req.session.user = userInfo.uid;
           res.end('created new session');
       }
       // if the session is valid (i.e. cookie) then just respond with a message to make the ajax request successful.
       if (req.session.user) {
         res.end('have a valid session');
       }
-
     })
     .catch(console.error);
   });
@@ -108,7 +112,6 @@ app.get('/logout', (req, res) => {
   res.end('session ended')
 })
 
-// ********** testing helper functions in utils.js psedocode
 
 app.post('/watchlist', (req, res) => {
   // 1- get the data from client {threshold: 22, product: {} }
@@ -119,7 +122,8 @@ app.post('/watchlist', (req, res) => {
    var threshold = req.body.threshold;
 
    var uid = String(req.session.user);
-   console.log('-----+++++++-----', req.body)
+   console.log(req.session)
+   // console.log('-----+++++++-----', req.body)
 
    db.User.findOrCreate({where: {uid:uid} }).then( (user) => {
     user = user[0]
@@ -136,7 +140,6 @@ app.post('/watchlist', (req, res) => {
 
 })
 
-
 app.get('/search', (req, res) => {
   utils.onRequestFetcher(req.query.productName, (err, matchedProducts) => {
     if (err) res.statusCode(404).send([{}])
@@ -145,18 +148,17 @@ app.get('/search', (req, res) => {
 })
 
 
-app.get('/watchlist', (req, res) => {
-  // should fetch Walmart data using helper function in utils
-  // fetches the data from database produncts tabe (that we we saved in watchlist post request)
-  // it should send only the data for the loggedin user
-  // In response something like userWatchedProducts = db.findAll({where: sub/user: req.session.user})
-    //res.end(userWatchedProducts)
-})
-
 
 app.listen(port, function() {
   console.log('listening on port  '+port);
 });
+
+
+
+
+
+
+
 
 
 
