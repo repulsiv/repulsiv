@@ -84,17 +84,18 @@ app.use(cookieSession({
       db.User.findOrCreate({ where: userInfo }).then((result) => {
         // if (result === null || (Array.isArray(result) && result.length === 0)) {
         // }
-
-        if (!req.session.user) {
-            req.session.user = userInfo.userid;
-            res.end('created new session');
-        }
-        // if the session is valid (i.e. cookie) then just respond with a message to make the ajax request successful.
-        if (req.session.user) {
-          res.end('have a valid session');
-        }
       });
       // either case (user exist or no), create session (i.e. cookie) IF the user does not exist or expired.
+
+
+      if (!req.session.user) {
+          req.session.user = userInfo.userid;
+          res.end('created new session');
+      }
+      // if the session is valid (i.e. cookie) then just respond with a message to make the ajax request successful.
+      if (req.session.user) {
+        res.end('have a valid session');
+      }
 
     })
     .catch(console.error);
@@ -118,7 +119,7 @@ app.post('/watchlist', (req, res) => {
    var threshold = req.body.threshold;
 
    var uid = String(req.session.user);
-   console.log('-----+++++++-----', req.session.user)
+   console.log('-----+++++++-----', req.body)
 
    db.User.findOrCreate({where: {uid:uid} }).then( (user) => {
     user = user[0]
