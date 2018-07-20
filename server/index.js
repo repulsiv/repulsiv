@@ -58,12 +58,6 @@ app.use(cookieSession({
 
   // ############ ########################### ##############
 
-  app.get('/products', (req, res) => {
-    console.log('inside products')
-    res.send('yayy - you are in products page')
-  })
-
-
   app.post('/login', (req, res) => {
 
     var token = req.body.id_token;
@@ -130,10 +124,12 @@ app.post('/watchlist', (req, res) => {
 
 
 app.get('/search', (req, res) => {
-  // should simply fetch Walmart data using helper function in utils and respond back (no db interaction)
-  console.log('in search get')
-  utils.onRequestFetcher(req.body.productName, (matchedProducts) => {
-    res.send(matchedProducts)
+  console.log('in search')
+  console.log(req.query.productName)
+
+  utils.onRequestFetcher(req.query.productName, (err, matchedProducts) => {
+    if (err) res.statusCode(404).send([{}])
+    else res.send(matchedProducts)
   })
 })
 

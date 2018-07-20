@@ -20,7 +20,7 @@ class App extends React.Component {
       items: [],
       isLoggedIn: false,
       mockData: [],
-      username: ''
+      username: '',
 
     }
   }
@@ -31,7 +31,7 @@ class App extends React.Component {
       // {threshold: 20, product: {itemId: - , name: - , ...} }
       debugger;
       $.ajax({
-        url: 'http://localhost:3000/watchList',
+        url: '/watchList',
         method: 'POST',
         data: toggledItem,
         success: (response) => {
@@ -55,13 +55,54 @@ class App extends React.Component {
 
   }
 
-  handleSearch(e) {
-    // perform ajax call to get get the data
 
+  fetch(productToSearch, cb) {
+    let self = this;
+    var notFoundCase = [{
+      "itemId": 1000001,
+      "parentItemId": 100001,
+      "name": 'Sorry, item not found',
+      "msrp": null,
+      "salePrice": null,
+      "thumbnailImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg',
+      "mediumImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg',
+      "largeImage": 'https://davescomputertips.com/wp-content/uploads/2015/10/item-not-found-feature.jpg'
+    }]
+
+
+    $.ajax({
+      url: '/search',
+      method: 'GET',
+      context: self,
+      data: {productName: productToSearch},
+      success: (products) => {
+        if (products === '') {
+          cb(notFoundCase)
+        }
+        else {
+          cb(products)
+        }
+
+      },
+      error: function (err) {
+        debugger
+        console.log(err);
+      }
+    })
+  }
+
+
+  handleSearch(e) {
     if (e.key ===  'Enter') {
-      this.setState({
-        mockData: sampleData.mockData
-      })
+      if (e.target.value) {
+        this.fetch(e.target.value, (products) => {
+        this.setState({
+          mockData: products
+          })
+        })
+      }
+
+
     }
   }
 
@@ -114,7 +155,7 @@ class App extends React.Component {
           </Col>
           <Col md={8} xs={8}>
             <br />
-            <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} />
+            <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} onChange={this.handleSearch}/>
              <br /><br /><br /><br />
             <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} handleToggleState={this.handleToggleState}/>
           </Col>
