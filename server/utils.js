@@ -31,7 +31,7 @@ module.exports = {
       if (!err && response.statusCode === 200) {
         var product = JSON.parse(body)
         product = _objFilter(product)
-        callback(product)
+        callback(null, product)
       }
     })
   },
@@ -54,8 +54,9 @@ module.exports = {
         products = products.items.map((product) => {
           return _objFilter(product);
         })
+        // console.log(products)
         // products.items is an array of items
-        callback(products)
+        callback(null, products)
       }
     })
   },
