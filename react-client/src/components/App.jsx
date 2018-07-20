@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './Header.jsx'
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
 import ProductList from './ProductList.jsx';
@@ -6,6 +7,7 @@ import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+
 var sampleData = require('../mockData.js');
 
 class App extends React.Component {
@@ -132,26 +134,11 @@ class App extends React.Component {
         {button}
       </div>
 
-
-       <Row>
-          <Col md={10} xs={10}>
-            <br />
-
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-          </Col>
-
-          <Col md={2} xs={2}>
-            <br />
-            "Logo would appear here"
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-          </Col>
-        </Row>
+        <Header />
 
         <Row>
           <Col md={2} xs={2}>
             <br />
-            "empty space on left"
-
           </Col>
           <Col md={8} xs={8}>
             <br />
@@ -162,7 +149,6 @@ class App extends React.Component {
 
           <Col md={2} xs={2}>
             <br />
-            "empty space on right"
              {watchList}
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -179,19 +165,6 @@ class App extends React.Component {
           </Col>
         </Row>
       </Grid>
-
-  /*
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <h1> Yecchy </h1>
-          {button}
-          <input type="text" name="search" placeholder="Seacrh.." onKeyPress={this.handleSearch} />
-          <ProductList items={this.state.mockData} isLoggedIn={this.state.isLoggedIn} />
-        </form>
-      </div>
-
-   */
-
       )
   }
 }

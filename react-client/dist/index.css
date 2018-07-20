@@ -1,5 +1,6 @@
 /* Styling for toggle button http://aaronshaf.github.io/react-toggle/ */
 
+
 .react-toggle {
   touch-action: pan-x;
 
@@ -196,4 +197,8 @@ body {
 
 .sidenav a:hover {
     color: #064579;
+}
+
+#app {
+  background-color: #e5ffcc;
 }

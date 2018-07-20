@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Switch, PropsRoute} from 'react-router-dom'
 import { Grid, Row, Col} from 'react-bootstrap';
 import ProductChart from './ProductChart.jsx';
+import Header from './Header.jsx'
 var data = require('../mockData.js');
 
 
@@ -48,39 +49,23 @@ const WatchList = function(props) {
 
   return (<Grid>
 
-  <Row className="show-grid">
-    <Col md={10} xs={10}>
-      <code>&lt;{'Col xs={12} md={8}'} /">&gt;</code>
-       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    </Col>
-
-    <Col md={2} xs={2}>
-      <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
-       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    </Col>
-  </Row>
-
+  <Header />
 
   <Row className="show-grid">
     <Col md={2} xs={2}>
-      <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
     </Col>
 
     <Col md={8} xs={8}>
-      <code>&lt;{'Col xs={6} md={4}'} /">&gt;</code>
-
       <WatchListItem items={data.mockGraphData}/>
     </Col>
 
     <Col md={2} xs={2}>
-      <code>&lt;{'Col xsHidden md={4}'} /">&gt;</code>
     </Col>
   </Row>
 
 
   <Row className="show-grid">
     <Col md={12} xs={12}>
-      <code>&lt;{'Col md={6} mdPush={6}'} /">&gt;</code>
       <br />
       "contact-us: xxx-xxx-xxxx"
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
