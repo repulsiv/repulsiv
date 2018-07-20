@@ -52,8 +52,12 @@ class Login extends React.Component {
       success: function(response){
         // upon successfull sign-in - replace the sign-in button with logout
         self.props.userLogin(true, username)
-        //if (response == 'created new session'){}
-        //if (response == 'have a valid session'){}
+        if (response == 'created new session'){
+          console.log('************** new ***********')
+        }
+        if (response == 'have a valid session'){
+          console.log('************ OLD *************')
+        }
       },
       error: function(err) {
         console.log(err)
