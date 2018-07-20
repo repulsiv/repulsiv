@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession({
   name: 'yecchy',
   keys: ['secret-to-sign-cookies'],
-  maxAge: 60000
+  maxAge: 60000000
 
 }))
 
@@ -157,16 +157,26 @@ app.get('/watchlist', (req, res) => {
     var userid = req.session.user;
 
 
-    db.sequelize.query("SELECT * FROM `products` INNER JOIN `userProducts` ON (products.id = userProducts.productId) INNER JOIN `users` ON (userProducts.userId = users.id) where users.uid = " + userid).then( (result) => {
+    // db.sequelize.query("SELECT * FROM `products` INNER JOIN `userProducts` ON (products.id = userProducts.productId) INNER JOIN `users` ON (userProducts.userId = users.id) where users.uid = " + userid).then( (result) => {
+    // })
+
+    db.sequelize.query("SELECT products.*, productPrices.createdAt, productPrices.price FROM  `products`  INNER JOIN `userProducts` ON (products.id = userProducts.productId) INNER JOIN `users` ON (userProducts.userId = users.id)  INNER JOIN `productPrices` ON products.id = productPrices.productId where users.uid = " + userid)
+    .then((result) => {
       console.log(result);
       res.send(result[0]);
     })
+  })
     // db.sequelize.query("select users.username, productPrices.price, productPrices.createdAt from `productPrices` inner join `userProducts` on productPrices.productId = userProducts.productId inner join `users` on users.id = userProducts.userId")
     // .then( (result) => {
     //   console.log(result);
     //   res.send(result);
     // })
-})
+
+
+
+
+
+
 
 app.listen(port, function() {
   console.log('listening on port  '+port);
