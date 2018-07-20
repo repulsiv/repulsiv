@@ -114,9 +114,21 @@ app.post('/watchlist', (req, res) => {
   // 1- get the data from client {threshold: 22, product: {} }
   // 2- It then should add user infor to this data  (req.session.user) so we know which item is for which user
     // 3- save this data to the database
-   userWatchListData = req.body
-   userWatchListData.sub = req.session.user
-   console.log(userWatchListData)
+
+   var productToWatch = req.body.productToWatch
+   var threshold = req.body.threshold;
+   var uid = req.session.user;
+   console.log(uid, threshold)
+   // db.User.findOrCreate({where: {uid:uid, username:'khz', email:'v@abc.com'}}).then( (user) => {
+   //  user = user[0]
+   //  db.Product.findOrCreate({where: productToWatch }).then((product) => {
+   //    product = product[0]
+   //    user.addProduct(product, {through: {threshold: threshold}}) // THIS IS THE ID FIELD OF JOIN TABLE!!!!
+   //  })
+  // })
+
+
+   // console.log(userWatchListData)
    // now save this data to products table
    res.send('successfully saved in db, if not send error ..')
 
@@ -124,9 +136,6 @@ app.post('/watchlist', (req, res) => {
 
 
 app.get('/search', (req, res) => {
-  console.log('in search')
-  console.log(req.query.productName)
-
   utils.onRequestFetcher(req.query.productName, (err, matchedProducts) => {
     if (err) res.statusCode(404).send([{}])
     else res.send(matchedProducts)
