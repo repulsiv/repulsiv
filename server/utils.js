@@ -2,6 +2,16 @@ const request = require('request');
 const config = require('./config.js');
 const nodemailer = require('nodemailer');
 
+
+var _objFilter = function(product) {
+  var result = {};
+  var keys = ['itemId', 'name', 'msrp', 'salePrice', 'shortDescription', 'brandName', 'mediumImage', 'largeImage', 'productUrl', 'customerRating', 'numReviews'];
+  for (key of keys) {
+    result[key] = product[key];
+  }
+  return result;
+}
+
 module.exports = {
   routineFetcher: function(itemId, callback) {
     // calls
@@ -12,17 +22,16 @@ module.exports = {
       // 2- writes to db as: price, itemId, userId(sub), time(when fetched)
     // exg: http://api.walmartlabs.com/v1/items/10789576?format=json&apiKey=<api_key>
 
-
     let uri = 'http://api.walmartlabs.com/';
     let endpoint = 'v1/items';
     let query = '/'+ itemId + '?format=json&apiKey=' + config.WALMART_APIKEY;
     let url = uri + endpoint + query
 
     request.get(url, (err, response, body) => {
-      if (err) callback(err, null)
       if (!err && response.statusCode === 200) {
         var product = JSON.parse(body)
-        callback(null, product)
+        product = _objFilter(product)
+        callback(product)
       }
     })
   },
@@ -40,58 +49,50 @@ module.exports = {
 
     // by default it sorts with 'relevance' and returns only 10 items (numItems=10)
     request.get(url, function(err, response, body) {
-      if (err) callback(err, null)
       if (!err && response.statusCode === 200) {
         var products = JSON.parse(body)
+        products = products.items.map((product) => {
+          return _objFilter(product);
+        })
         // products.items is an array of items
-        callback(null, products.items)
+        callback(products)
       }
     })
   },
 
 
   sendEmail: (userEmail) => {
-
-    let transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-          type: 'OAuth2',
-          clientId: config.GMAIL_CLIENT_ID,
-          clientSecret: config.GMAIL_SECRET
+    var transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+        user: config.EMAIL_USER, //repulsiv.hr@gmail.com
+        pass: config.EMAIL_PASS
       }
-  });
+    });
 
     const mailOptions = {
-      from: 'sender@example.com',
+      from: config.EMAIL_USER,
       to: userEmail,
       subject: 'Product Info from Repulsiv',
-      text: 'Your product in watchlist has hit the threshold, more info on website',
-      auth: {
-          user: config.EMAIL_USER,
-          refreshToken: config.REFRESH_TOKEN,
-          accessToken: config.ACCESS_TOKEN,
-      }
-    }
+      html: '<p> Your product in watchlist has hit the threshold, more info on website. </p>'
+    };
 
     transporter.sendMail(mailOptions, function (err, info) {
-      if(err)
-        console.log(err)
-      else
-        console.log(info);
+       if(err)
+         console.log(err)
+       else
+         console.log(info);
     });
   }
 }
 
 
-// module.exports.onRequestFetcher('cereal', (err, products) => {
-//   console.log(err, products)
+// module.exports.onRequestFetcher('iwatch', (products) => {
+//   console.log(products)
 // })
 
 
-// module.exports.routineFetcher('10789576', (err, product)=> {
-//   console.log(err, product)
+// module.exports.routineFetcher('10789576', (product)=> {
+  // console.log(product)
 // })
-
 
