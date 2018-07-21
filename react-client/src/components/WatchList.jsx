@@ -41,6 +41,20 @@ class WatchListItem extends React.Component {
     this.setState({
       items:filteredArary
     })
+
+    // also tell server to delete
+    $.ajax({
+      url: '/remove',
+      method: 'POST',
+      data: itemToRemove.itemId,
+      success: function(result) {
+        debugger;
+        console.log(result)
+      },
+      error: function(err) {
+        console.log(err)
+      }
+    })
   }
 
   render() {

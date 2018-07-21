@@ -166,17 +166,11 @@ app.get('/watchlist', (req, res) => {
       res.send(result[0]);
     })
   })
-    // db.sequelize.query("select users.username, productPrices.price, productPrices.createdAt from `productPrices` inner join `userProducts` on productPrices.productId = userProducts.productId inner join `users` on users.id = userProducts.userId")
-    // .then( (result) => {
-    //   console.log(result);
-    //   res.send(result);
-    // })
 
 
-
-
-
-
+app.post('/remove', (req,res) => {
+  // to fill
+})
 
 app.listen(port, function() {
   console.log('listening on port  '+port);
