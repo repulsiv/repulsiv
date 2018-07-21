@@ -1,6 +1,6 @@
 # Project Name
 
-> Pithy project description
+> Product analyzer and tracker
 
 ## Team
 
