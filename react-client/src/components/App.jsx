@@ -7,6 +7,7 @@ import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import {sidenav} from './Styles/App.css';
 
 var sampleData = require('../mockData.js');
 
@@ -116,8 +117,8 @@ class App extends React.Component {
 
     if (isLoggedIn) {
       var username = <h4> {this.state.username} </h4>
-      var button = <Logout userLogin={this.handleLoginStatus} />
-      var watchList = <div className="sidenav"><Link to='/watchlist'> {username} watch list </Link> </div>
+      var button = <Logout userLogin={this.handleLoginStatus}/>
+      var watchList = <div className="sidenav `${sidenav}`"><Link to='/watchlist'> {username} watch list </Link> </div>
     } else {
       var button = <Login userLogin={this.handleLoginStatus} />
     }

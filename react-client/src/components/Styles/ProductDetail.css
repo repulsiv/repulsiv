@@ -1,0 +1,16 @@
+p {
+  border: 2px solid #0e7e12;
+  border-radius: 5px;
+  background-color: white;
+  font-family: 'Gaegu', cursive;
+  font-size: 20px;
+}
+
+.description {
+  border: 2px solid #0e7e12;
+  border-radius: 5px;
+}
+
+h1 {
+  font-family: 'Gaegu', cursive;
+}

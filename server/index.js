@@ -117,7 +117,6 @@ app.post('/watchlist', (req, res) => {
   // 1- get the data from client {threshold: 22, product: {} }
   // 2- It then should add user infor to this data  (req.session.user) so we know which item is for which user
     // 3- save this data to the database
-<<<<<<< HEAD
 
    var productToWatch = req.body.productToWatch
    var threshold = req.body.threshold;
