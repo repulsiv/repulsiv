@@ -2,6 +2,7 @@ import React from 'react';
 import Toggle from 'react-toggle'
 import { Link,  Route} from "react-router-dom";
 import {InputGroup, FormControl} from 'react-bootstrap'
+import styles from './Styles/ProductListItem.css'
 class ProductListItem extends React.Component {
 
   constructor(props) {
@@ -51,7 +52,7 @@ class ProductListItem extends React.Component {
     }
      return (
       <div>
-        <li>
+        <li className={styles}>
           <Link to={`/products/${this.props.value.itemId}`} > {this.props.value.name} Price:${this.props.value.msrp}</Link>
           {toggleSwitch}
           {thresholdInput}

@@ -22,6 +22,9 @@ var client = new OAuth2Client(CLIENT_ID);
 var port = process.env.PORT || 3000
 
 var app = express();
+
+
+var app = express();
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 var bodyParser = require('body-parser');
@@ -128,9 +131,7 @@ app.post('/watchlist', (req, res) => {
     })
   })
 
-
-   // now save this data to products table
-   res.send('successfully saved in db, if not send error ..')
+   res.send('successfully saved in db, if not send error ..');
 
 })
 
@@ -143,6 +144,7 @@ app.get('/search', (req, res) => {
 
 
 app.get('/watchlist', (req, res) => {
+  console.log(req.session.user);
   // should fetch Walmart data using helper function in utils
   // fetches the data from database produncts tabe (that we we saved in watchlist post request)
   // it should send only the data for the loggedin user
