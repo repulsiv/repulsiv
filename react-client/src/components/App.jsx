@@ -7,7 +7,8 @@ import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-
+import MetaTags from 'react-meta-tags';
+var config = require('../config.js');
 var sampleData = require('../mockData.js');
 
 class App extends React.Component {
@@ -25,12 +26,24 @@ class App extends React.Component {
       username: '',
 
     }
+
+
+    try {
+      var config = require('../config.js');
+    }
+
+    catch(e) {
+      config = {
+        CLIENT_ID: process.env.CLIENT_ID
+      }
+    }
   }
 
   handleToggleState(toggledItem) {
     // to ask user for threshhold to set
     // then send this threshold value along with the checked item to server
       // {threshold: 20, product: {itemId: - , name: - , ...} }
+
       $.ajax({
         url: '/watchList',
         method: 'POST',
@@ -86,6 +99,7 @@ class App extends React.Component {
 
       },
       error: function (err) {
+        debugger
         console.log(err);
       }
     })
@@ -122,15 +136,15 @@ class App extends React.Component {
       var button = <Login userLogin={this.handleLoginStatus} />
     }
 
-
-
     return (
-
       <Grid>
+        <MetaTags>
+          <meta name='google-signin-client_id' content={config.CLIENT_ID} />
+        </MetaTags>
 
-       <div>
-        {button}
-      </div>
+        <div>
+          {button}
+        </div>
 
         <Header />
 

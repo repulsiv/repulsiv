@@ -36,6 +36,7 @@
     "react-bootstrap": "^0.32.1",
     "react-chartjs-2": "^2.7.3",
     "react-dom": "^15.4.2",
+    "react-meta-tags": "^0.4.1",
     "react-router-dom": "^4.3.1",
     "react-toggle": "^4.0.2",
     "request": "^2.87.0",
