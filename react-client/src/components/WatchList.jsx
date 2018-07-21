@@ -69,6 +69,7 @@ class WatchListItem extends React.Component {
     <li key={groupedItems[key][0].itemId.toString()}>
       <h4>  {groupedItems[key][0].name} </h4>
       <img src={groupedItems[key][0].mediumImage} />
+      <h5> Your threshold: ${groupedItems[key][0].threshold}</h5>
       <ProductChart data={groupedItems[key]} />
       <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(groupedItems[key][0])} />
     </li>)
