@@ -120,7 +120,7 @@ const WatchList = function(props) {
   <Row className="show-grid">
     <Col md={12} xs={12}>
       <br />
-      "contact-us: xxx-xxx-xxxx"
+      contact-us: 1 (800) 123-0000
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </Col>
   </Row>
