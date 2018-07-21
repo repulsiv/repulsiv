@@ -26,7 +26,6 @@ class WatchListItem extends React.Component {
       url: "/watchlist",
       context: self,
       success: function(result){
-        // result.map()
         self.setState({items: result})
       },
       error: function(err) {
@@ -46,9 +45,8 @@ class WatchListItem extends React.Component {
     $.ajax({
       url: '/remove',
       method: 'POST',
-      data: itemToRemove.itemId,
+      data: {itemToRemove: itemToRemove.itemId},
       success: function(result) {
-        debugger;
         console.log(result)
       },
       error: function(err) {
