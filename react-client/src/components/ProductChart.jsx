@@ -6,12 +6,8 @@ class ProductChart extends React.Component {
   constructor(props) {
     super(props);
 
-    var msrp = [12.79, 12.66, 11.22, 10.33]
-    var createdAt = ["2018-05-30 00:00:00", "2018-05-30 00:10:00", "2018-05-22 00:20:00", "2018-05-22 00:30:00"]
-
-    const data = {
-    //labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    labels: createdAt,
+    var data = {
+    labels: [],
     datasets: [
       {
         label: 'Price trend',
@@ -32,16 +28,21 @@ class ProductChart extends React.Component {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: msrp
+        data: []
         //data: [65, 59, 80, 81, 56, 55, 40]
       }
     ]
   };
 
+
+  this.state = {
+    data: data
+  }
+
+
   this.chartOptions = {
 
     scales: {
-
       yAxes: [{
         ticks: {
           // Include a dollar sign in the ticks
@@ -52,14 +53,28 @@ class ProductChart extends React.Component {
       }]
     }
   }
+}
 
-    this.state = {
-      data: data
-    }
+  componentDidMount() {
 
+    var prices = this.props.data.map((product) => {
+      return product.price
+    })
+
+    var createdAtTimes = this.props.data.map((product) => {
+      return product.createdAt
+    })
+
+    this.state.data.labels = createdAtTimes;
+    this.state.data.datasets[0].data = prices;
+
+    this.setState({
+      data: this.state.data
+    })
   }
 
   render() {
+
     return (
       <div>
         <Line data={this.state.data} options={this.chartOptions}/>

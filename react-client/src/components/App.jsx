@@ -31,7 +31,6 @@ class App extends React.Component {
     // to ask user for threshhold to set
     // then send this threshold value along with the checked item to server
       // {threshold: 20, product: {itemId: - , name: - , ...} }
-      debugger;
       $.ajax({
         url: '/watchList',
         method: 'POST',
