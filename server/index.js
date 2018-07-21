@@ -2,11 +2,10 @@
 
 var express = require('express');
 var {OAuth2Client} = require('google-auth-library');
-// var db = require('../database-mysql');
 var db = require('../database-mysql/connection.js')
 var utils = require('./utils.js')
-
 var cookieSession = require('cookie-session');
+var priceTrackerCron = require('../database-mysql/runCron.js');
 
 try {
   var config = require('../config.js');
@@ -36,6 +35,9 @@ app.use(cookieSession({
   maxAge: 60000000
 
 }))
+
+
+priceTrackerCron.task.start()
 
   // ############ For debugging authentication  ##############
 
@@ -83,13 +85,8 @@ app.use(cookieSession({
     verify()
     // after tokenid is verified
     .then( (userInfo) => {
-      // check if userid exists in db
-      // db.findUserId(userInfo.userid, (err, result) => {
-      //   if (result === null || (Array.isArray(result) && result.length === 0)) {
-      //     // if not then insert the id in db
-      //     db.insertUserId(userInfo, (err, result) => {})
-      //   }
-      // });
+      // check if userid exists in db, if not then insert the id in db
+
       db.User.findOrCreate({ where: userInfo }).then((result) => {})
 
       // either case (user exist or no), create session (i.e. cookie) IF the user does not exist or expired.
@@ -122,8 +119,6 @@ app.post('/watchlist', (req, res) => {
    var threshold = req.body.threshold;
 
    var uid = String(req.session.user);
-   console.log(req.session)
-   // console.log('-----+++++++-----', req.body)
 
    db.User.findOrCreate({where: {uid:uid} }).then( (user) => {
     user = user[0]
@@ -134,7 +129,6 @@ app.post('/watchlist', (req, res) => {
   })
 
 
-   // console.log(userWatchListData)
    // now save this data to products table
    res.send('successfully saved in db, if not send error ..')
 
