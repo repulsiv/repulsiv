@@ -69,7 +69,8 @@ class WatchListItem extends React.Component {
     <li key={groupedItems[key][0].itemId.toString()}>
       <h4>  {groupedItems[key][0].name} </h4>
       <img src={groupedItems[key][0].mediumImage} />
-      <h5> Your threshold: ${groupedItems[key][0].threshold}</h5>
+      <p> <em> Customer Ratings: {groupedItems[key][0].customerRating } Reviews: {groupedItems[key][0].numReviews}</em></p>
+      <p> Your threshold: <b> ${groupedItems[key][0].threshold} </b></p>
       <ProductChart data={groupedItems[key]} />
       <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(groupedItems[key][0])} />
     </li>)
