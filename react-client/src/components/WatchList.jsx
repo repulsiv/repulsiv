@@ -46,7 +46,7 @@ class WatchListItem extends React.Component {
     $.ajax({
       url: '/remove',
       method: 'POST',
-      data: itemToRemove.itemId,
+      data: {itemToRemove: itemToRemove.itemId},
       success: function(result) {
         debugger;
         console.log(result)

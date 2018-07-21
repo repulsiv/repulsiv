@@ -1,7 +1,6 @@
 // ref - https://developers.google.com/identity/sign-in/web/backend-auth
 
 var express = require('express');
-var bodyParser = require('body-parser');
 var {OAuth2Client} = require('google-auth-library');
 // var db = require('../database-mysql');
 var db = require('../database-mysql/connection.js')
@@ -21,11 +20,12 @@ catch(e) {
 
 var CLIENT_ID = config.CLIENT_ID;
 var client = new OAuth2Client(CLIENT_ID);
-
 var port = process.env.PORT || 3000
-var app = express();
 
+var app = express();
 app.use(express.static(__dirname + '/../react-client/dist'));
+
+var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -169,7 +169,15 @@ app.get('/watchlist', (req, res) => {
 
 
 app.post('/remove', (req,res) => {
-  // to fill
+  var itemIdToRemove = req.body.itemToRemove
+  db.Product.destroy({where: {itemId: itemIdToRemove}})
+  .then((isDeleted) => {
+    if (isDeleted) {
+      res.send('deleted')
+    } else {
+      res.send('unable to delete')
+    }
+  })
 })
 
 app.listen(port, function() {
