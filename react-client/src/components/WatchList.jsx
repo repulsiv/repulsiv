@@ -68,7 +68,11 @@ class WatchListItem extends React.Component {
    listItems.push(
     <li key={groupedItems[key][0].itemId.toString()}>
       <h4>  {groupedItems[key][0].name} </h4>
-      <img src={groupedItems[key][0].mediumImage} />
+      <a href={groupedItems[key][0].productUrl} >
+        <img src={groupedItems[key][0].mediumImage} />
+      </a>
+      <p> <em> Customer Ratings: {groupedItems[key][0].customerRating } Reviews: {groupedItems[key][0].numReviews}</em></p>
+      <p> Your threshold: <b> ${groupedItems[key][0].threshold} </b></p>
       <ProductChart data={groupedItems[key]} />
       <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(groupedItems[key][0])} />
     </li>)
@@ -116,7 +120,7 @@ const WatchList = function(props) {
   <Row className="show-grid">
     <Col md={12} xs={12}>
       <br />
-      "contact-us: xxx-xxx-xxxx"
+      contact-us: 1 (800) 123-0000
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </Col>
   </Row>

@@ -160,7 +160,7 @@ app.get('/watchlist', (req, res) => {
     // db.sequelize.query("SELECT * FROM `products` INNER JOIN `userProducts` ON (products.id = userProducts.productId) INNER JOIN `users` ON (userProducts.userId = users.id) where users.uid = " + userid).then( (result) => {
     // })
 
-    db.sequelize.query("SELECT products.*, productPrices.createdAt, productPrices.price FROM  `products`  INNER JOIN `userProducts` ON (products.id = userProducts.productId) INNER JOIN `users` ON (userProducts.userId = users.id)  INNER JOIN `productPrices` ON products.id = productPrices.productId where users.uid = " + userid)
+    db.sequelize.query("SELECT products.*, productPrices.createdAt, productPrices.price, userProducts.threshold FROM  `products`  INNER JOIN `userProducts` ON (products.id = userProducts.productId) INNER JOIN `users` ON (userProducts.userId = users.id)  INNER JOIN `productPrices` ON products.id = productPrices.productId where users.uid = " + userid)
     .then((result) => {
       console.log(result);
       res.send(result[0]);

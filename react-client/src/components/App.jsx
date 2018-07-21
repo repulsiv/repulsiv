@@ -86,7 +86,6 @@ class App extends React.Component {
 
       },
       error: function (err) {
-        debugger
         console.log(err);
       }
     })
