@@ -46,11 +46,12 @@ class WatchListItem extends React.Component {
   render() {
 
   var groupedItems = _.groupBy(this.state.items, 'itemId')
+  var listItems = [];
   // number of keys = number of products
     // one groupItem is a collection of prices of the same product
   for (var key of Object.keys(groupedItems)) {
 
-   var  listItems = (
+   listItems.push(
     <li key={groupedItems[key][0].itemId.toString()}>
       <h4>  {groupedItems[key][0].name} </h4>
       <img src={groupedItems[key][0].mediumImage} />
