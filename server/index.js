@@ -85,13 +85,8 @@ priceTrackerCron.task.start()
     verify()
     // after tokenid is verified
     .then( (userInfo) => {
-      // check if userid exists in db
-      // db.findUserId(userInfo.userid, (err, result) => {
-      //   if (result === null || (Array.isArray(result) && result.length === 0)) {
-      //     // if not then insert the id in db
-      //     db.insertUserId(userInfo, (err, result) => {})
-      //   }
-      // });
+      // check if userid exists in db, if not then insert the id in db
+
       db.User.findOrCreate({ where: userInfo }).then((result) => {})
 
       // either case (user exist or no), create session (i.e. cookie) IF the user does not exist or expired.
