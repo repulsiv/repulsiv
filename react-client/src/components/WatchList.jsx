@@ -68,7 +68,9 @@ class WatchListItem extends React.Component {
    listItems.push(
     <li key={groupedItems[key][0].itemId.toString()}>
       <h4>  {groupedItems[key][0].name} </h4>
-      <img src={groupedItems[key][0].mediumImage} />
+      <a href={groupedItems[key][0].productUrl} >
+        <img src={groupedItems[key][0].mediumImage} />
+      </a>
       <p> <em> Customer Ratings: {groupedItems[key][0].customerRating } Reviews: {groupedItems[key][0].numReviews}</em></p>
       <p> Your threshold: <b> ${groupedItems[key][0].threshold} </b></p>
       <ProductChart data={groupedItems[key]} />
