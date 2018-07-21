@@ -26,7 +26,6 @@ class WatchListItem extends React.Component {
       url: "/watchlist",
       context: self,
       success: function(result){
-        debugger
         // result.map()
         self.setState({items: result})
       },
@@ -46,15 +45,31 @@ class WatchListItem extends React.Component {
 
   render() {
 
-  var listItems = this.state.items.map((item) =>
-    <li key={item.itemId.toString()}>
-      <h4> {item.name} </h4>
-      <img src={item.mediumImage} />
-      <ProductChart data={item} />
-      <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(item)} />
+  var groupedItems = _.groupBy(this.state.items, 'itemId')
+  // number of keys = number of products
+    // one groupItem is a collection of prices of the same product
+  for (var key of Object.keys(groupedItems)) {
 
-    </li>
-    );
+   var  listItems = (
+    <li key={groupedItems[key][0].itemId.toString()}>
+      <h4>  {groupedItems[key][0].name} </h4>
+      <img src={groupedItems[key][0].mediumImage} />
+      <ProductChart data={groupedItems[key]} />
+      <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(groupedItems[key][0])} />
+    </li>)
+  }
+
+
+
+  // var listItems = this.state.items.map((item) =>
+  //   <li key={item.itemId.toString()}>
+  //     <h4> {item.name} </h4>
+  //     <img src={item.mediumImage} />
+  //     <ProductChart data={item} />
+  //     <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(item)} />
+
+  //   </li>
+    // );
 
   return (
     <ul> {listItems} </ul>

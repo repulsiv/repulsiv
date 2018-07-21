@@ -60,6 +60,7 @@ class ProductChart extends React.Component {
   }
 
   render() {
+    debugger;
     return (
       <div>
         <Line data={this.state.data} options={this.chartOptions}/>
