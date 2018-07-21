@@ -117,7 +117,7 @@ class App extends React.Component {
     if (isLoggedIn) {
       var username = <h4> {this.state.username} </h4>
       var button = <Logout userLogin={this.handleLoginStatus} />
-      var watchList = <div className="sidenav"><Link to='/watchList'> {username} watch list </Link> </div>
+      var watchList = <div className="sidenav"><Link to='/watchlist'> {username} watch list </Link> </div>
     } else {
       var button = <Login userLogin={this.handleLoginStatus} />
     }
