@@ -5,7 +5,7 @@
 ## Team
 
   - __Product Owner__: Lukas
-  - __Scrum Master__: shaital
+  - __Scrum Master__: Shaital
   - __Development Team Members__: Nasa, Khizra
 
 ## Table of Contents
