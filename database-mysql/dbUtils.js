@@ -25,7 +25,7 @@ module.exports = {
   },
 
   // use it like task.start()
-  cronTask: cron.schedule('* * * * *', function() {
+  cronTask: cron.schedule('*/5 * * * *', function() {
     console.log('running cron job...')
     module.exports.insertToProductPriceTable()
   })
