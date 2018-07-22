@@ -7,7 +7,6 @@ import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import MetaTags from 'react-meta-tags';
 var config = require('../config.js');
 var sampleData = require('../mockData.js');
 
@@ -25,17 +24,6 @@ class App extends React.Component {
       mockData: [],
       username: '',
 
-    }
-
-
-    try {
-      var config = require('../config.js');
-    }
-
-    catch(e) {
-      config = {
-        CLIENT_ID: process.env.CLIENT_ID
-      }
     }
   }
 
@@ -138,10 +126,6 @@ class App extends React.Component {
 
     return (
       <Grid>
-        <MetaTags>
-          <meta name='google-signin-client_id' content={config.CLIENT_ID} />
-        </MetaTags>
-
         <div>
           {button}
         </div>

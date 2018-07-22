@@ -1,6 +1,15 @@
 const request = require('request');
-const config = require('./config.js');
 const nodemailer = require('nodemailer');
+
+try {
+  var config = require('./config.js');
+}
+
+catch(e) {
+  config = {
+    WALMART_APIKEY: process.env.WALMART_APIKEY
+  }
+}
 
 
 var _objFilter = function(product) {
