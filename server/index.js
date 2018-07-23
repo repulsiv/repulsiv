@@ -5,7 +5,7 @@ var {OAuth2Client} = require('google-auth-library');
 var db = require('../database-mysql/connection.js')
 var utils = require('./utils.js')
 var cookieSession = require('cookie-session');
-var priceTrackerCron = require('../database-mysql/runCron.js');
+var dbUtils = require('../database-mysql/dbUtils.js');
 
 try {
   var config = require('../config.js');
@@ -37,7 +37,7 @@ app.use(cookieSession({
 }))
 
 
-priceTrackerCron.task.start()
+dbUtils.priceTrackerCron.start()
 
   // ############ For debugging authentication  ##############
 
@@ -121,10 +121,13 @@ app.post('/watchlist', (req, res) => {
    var uid = String(req.session.user);
 
    db.User.findOrCreate({where: {uid:uid} }).then( (user) => {
-    user = user[0]
+    user = user[0];
     db.Product.findOrCreate({where: productToWatch }).then((product) => {
-      product = product[0]
-      user.addProduct(product, {through: {threshold: threshold}}) // THIS IS THE ID FIELD OF JOIN TABLE!!!!
+      product = product[0];
+      user.addProduct(product, {through: {threshold: threshold}}); // THIS IS THE ID FIELD OF JOIN TABLE!!!!
+      // calling twice so it creates the line in graph
+      dbUtils.insertToProductPriceTable(productToWatch);
+      dbUtils.insertToProductPriceTable(productToWatch);
     })
   })
 

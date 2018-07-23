@@ -52,7 +52,7 @@ class ProductListItem extends React.Component {
      return (
       <div>
         <li>
-          <Link to={`/products/${this.props.value.itemId}`} > {this.props.value.name} Price:${this.props.value.msrp}</Link>
+          <Link to={`/products/${this.props.value.itemId}`} > {this.props.value.name} Price:${this.props.value.salePrice}</Link>
           {toggleSwitch}
           {thresholdInput}
         </li>
