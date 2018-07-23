@@ -71,7 +71,7 @@ module.exports = {
   },
 
 
-  sendEmail: (userEmail) => {
+   sendEmail: (userEmail, emailBody) => {
     var transporter = nodemailer.createTransport({
      service: 'gmail',
      auth: {
@@ -84,14 +84,14 @@ module.exports = {
       from: config.EMAIL_USER,
       to: userEmail,
       subject: 'Product Info from Repulsiv',
-      html: '<p> Your product in watchlist has hit the threshold, more info on website. </p>'
+      html: emailBody
     };
 
     transporter.sendMail(mailOptions, function (err, info) {
        if(err)
-         console.log(err)
+        console.log(err)
        else
-         console.log(info);
+        console.log(info);
     });
   }
 }

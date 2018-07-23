@@ -6,10 +6,14 @@ const Header = function() {
 
   return (
     <Row>
-      <Col md={10} xs={10}>
+      <Col md={2} xs={2}>
         <br />
 
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </Col>
+
+      <Col md={8} xs={8}>
+        <img src="http://i68.tinypic.com/f20aae.png"/>
       </Col>
 
       <Col md={2} xs={2}>
