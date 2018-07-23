@@ -127,6 +127,7 @@ app.post('/watchlist', (req, res) => {
       user.addProduct(product, {through: {threshold: threshold}}); // THIS IS THE ID FIELD OF JOIN TABLE!!!!
       // calling twice so it creates the line in graph
       dbUtils.insertToProductPriceTable(productToWatch);
+      dbUtils.insertToProductPriceTable(productToWatch);
     })
   })
 
