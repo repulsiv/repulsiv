@@ -7,7 +7,6 @@ import Toggle from 'react-toggle';
 import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-
 var sampleData = require('../mockData.js');
 
 class App extends React.Component {
@@ -31,6 +30,7 @@ class App extends React.Component {
     // to ask user for threshhold to set
     // then send this threshold value along with the checked item to server
       // {threshold: 20, product: {itemId: - , name: - , ...} }
+
       $.ajax({
         url: '/watchList',
         method: 'POST',
@@ -86,6 +86,7 @@ class App extends React.Component {
 
       },
       error: function (err) {
+        debugger
         console.log(err);
       }
     })
@@ -122,15 +123,11 @@ class App extends React.Component {
       var button = <Login userLogin={this.handleLoginStatus} />
     }
 
-
-
     return (
-
       <Grid>
-
-       <div>
-        {button}
-      </div>
+        <div>
+          {button}
+        </div>
 
         <Header />
 
