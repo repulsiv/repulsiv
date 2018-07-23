@@ -7,8 +7,8 @@ var cron = require('node-cron');
 module.exports = {
   insertToProductPriceTable: function(product) {
     // chart gets data from productPrice table.
-    var itemId = product.itemId
-    var productToWatch = itemId ? {where: {itemId:itemId}} : {}
+    var itemId = product ? product.itemId : null;
+    var productToWatch = itemId ? {where: {itemId:itemId}} : {};
     db.Product.findAll(productToWatch).then( (products) => {
       products.forEach( (product) => {
         var itemId = product.get('itemId');
