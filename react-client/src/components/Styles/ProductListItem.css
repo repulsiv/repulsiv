@@ -1,0 +1,9 @@
+li {
+  border: 1px solid #0e7e12;
+  border-radius: 5px;
+  background-color: white;
+  margin: 0 0 5px 0;
+  list-style-type: none;
+  font-family: 'Gaegu', cursive;
+  font-size: 20px;
+}

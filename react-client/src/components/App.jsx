@@ -8,6 +8,7 @@ import $ from 'jquery';
 import { Grid, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 var sampleData = require('../mockData.js');
+import {sidenav} from './Styles/App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -118,7 +119,7 @@ class App extends React.Component {
     if (isLoggedIn) {
       var username = <h4> {this.state.username} </h4>
       var button = <Logout userLogin={this.handleLoginStatus} />
-      var watchList = <div className="sidenav"><Link to='/watchList'> {username} watch list </Link> </div>
+      var watchList = <div className="sidenav `${sidenav}`"><Link to='/watchlist'> {username} watch list </Link> </div>
     } else {
       var button = <Login userLogin={this.handleLoginStatus} />
     }
