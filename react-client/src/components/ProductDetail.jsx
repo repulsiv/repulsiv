@@ -1,5 +1,6 @@
 import React from 'react';
-var sampleData = require('../mockData.js')
+var sampleData = require('../mockData.js');
+import styles from './Styles/ProductDetail.css';
 
 
 const ProductDetail = function(props) {

@@ -1,4 +1,6 @@
 module.exports = {
-   CLIENT_ID: "",
-   WALMART_APIKEY: ""
+  CLIENT_ID: '',
+  WALMART_APIKEY: '',
+  EMAIL_USER: '',
+  EMAIL_PASS: ''
 }
