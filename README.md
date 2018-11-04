@@ -1,11 +1,10 @@
 # Project Name
-
-> Pithy project description
+A price tracker, analyzer and alerting application that allows users to visualize the product trends. They can also set a threshold price for their favorite products and if the retail price meets or fall below the threshold, they get notification. 
 
 ## Team
 
   - __Product Owner__: Lukas
-  - __Scrum Master__: shaital
+  - __Scrum Master__: Shaital
   - __Development Team Members__: Nasa, Khizra
 
 ## Table of Contents
