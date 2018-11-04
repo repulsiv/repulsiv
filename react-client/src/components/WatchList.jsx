@@ -35,7 +35,8 @@ class WatchListItem extends React.Component {
   }
 
   handleRemove(itemToRemove) {
-    itemToRemove.itemId
+    // itemToRemove.itemId
+    debugger
     var filteredArary = this.state.items.filter((item) => { return (item.itemId !== itemToRemove.itemId) })
     this.setState({
       items:filteredArary
@@ -62,7 +63,7 @@ class WatchListItem extends React.Component {
   // number of keys = number of products
     // one groupItem is a collection of prices of the same product
   for (var key of Object.keys(groupedItems)) {
-
+    debugger
    listItems.push(
     <li key={groupedItems[key][0].itemId.toString()}>
       <h4>  {groupedItems[key][0].name} </h4>
@@ -72,7 +73,7 @@ class WatchListItem extends React.Component {
       <p> <em> Customer Ratings: {groupedItems[key][0].customerRating } Reviews: {groupedItems[key][0].numReviews}</em></p>
       <p> Your threshold: <b> ${groupedItems[key][0].threshold} </b></p>
       <ProductChart data={groupedItems[key]} />
-      <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(groupedItems[key][0])} />
+      <input type="submit" value="Remove from watchlist" onClick={()=> this.handleRemove(this.state.items[key])} />
     </li>)
   }
 
