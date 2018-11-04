@@ -1,6 +1,6 @@
 # Project Name
 
-> Product analyzer and tracker
+A price tracker, analyzer and alerting application that allows users to visualize the product trends. They can also set a threshold price for their favorite products and if the retail price meets or fall below the threshold, they get notification.
 
 ## Team
 
