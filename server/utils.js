@@ -50,7 +50,7 @@ module.exports = {
     // calls Walmart Search API (v1/search) with the productName
     // returns back to client // no need to save
     // exg: http://api.walmartlabs.com/v1/search?query=ipod&format=json&apiKey=<api_key>
-
+    if (!config || config.WALMART_APIKEY === '') callback("key not found", null)
     let uri = 'http://api.walmartlabs.com/';
     let endpoint = 'v1/search';
     let query = '?query='+ productName + '&format=json&apiKey=' + config.WALMART_APIKEY;

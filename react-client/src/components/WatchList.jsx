@@ -35,7 +35,8 @@ class WatchListItem extends React.Component {
   }
 
   handleRemove(itemToRemove) {
-    itemToRemove.itemId
+    // itemToRemove.itemId
+    debugger
     var filteredArary = this.state.items.filter((item) => { return (item.itemId !== itemToRemove.itemId) })
     this.setState({
       items:filteredArary
@@ -62,7 +63,7 @@ class WatchListItem extends React.Component {
   // number of keys = number of products
     // one groupItem is a collection of prices of the same product
   for (var key of Object.keys(groupedItems)) {
-
+    debugger
    listItems.push(
     <li key={groupedItems[key][0].itemId.toString()}>
       <h4>  {groupedItems[key][0].name} </h4>
