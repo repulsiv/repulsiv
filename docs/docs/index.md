@@ -5,15 +5,13 @@ A price tracking, analyzing and alerting web application that allows users set d
 # Tech Stack 
 
 - Front-End - React, React Router, Chartjs
-- Back-end - NodeJS, ExpressJS
-- Authentication - Google Sign-In, Cookie
-- Database - MySQL
+- Back-end - Node, Expressjs, nodemailer
+- Authentication - Google Sign-In, cookieSession
+- Database - MySQL, Sequelize (ORM)
 
 
 # Schema 
 <img src="files/schema.png"> </img>
-
-
 
 
 # Demo
